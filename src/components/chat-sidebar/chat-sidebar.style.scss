@@ -1,0 +1,24 @@
+.chat-sidebar-component {
+    display: flex;
+    flex-direction: column;
+    background-color: #F9F9F9;
+    height: 100%;
+
+    .room {
+        display: flex;
+        flex-direction: column;
+
+        .title {
+            height: 48px;
+            border-bottom: 1px solid #eee;
+            color: #888;
+            padding: 1.4em 0.5em;
+            font-size: 0.8em;
+        }
+
+        .list {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}

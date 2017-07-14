@@ -1,0 +1,25 @@
+.chat-user-component {
+    padding: 0.5em;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .image {
+        width: 30px;
+        height: 30px;
+        filter: saturate(0);
+        opacity: 0.75;
+
+        &.online {
+            opacity: 1;
+            filter: none;
+        }
+    }
+
+    .name {
+        margin: 0 0 0 0.5em;
+        font-size: 0.8em;
+        color: #333;
+    }
+}

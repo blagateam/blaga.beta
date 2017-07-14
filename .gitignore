@@ -1,2 +1,5 @@
 node_modules
 .idea
+
+# Leaving public until we have a deployment process
+#public
