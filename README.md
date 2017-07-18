@@ -20,4 +20,4 @@ Firebase login `firebase login`
 
 How to actually deploy `npm run deploy`
 
-This is our URL `https://betabook-cb0a5.firebaseapp.com/`
+This is our URL https://betabook-cb0a5.firebaseapp.com/
