@@ -1,11 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
-const isProd = process.env.NODE_ENV === 'production';
 
-const devtool = isProd
-    ? 'source-map'
-    : 'cheap-module-eval-source-map';
+const devtool = 'cheap-module-eval-source-map';
 
 const entry = {
     app: './src/index.js',
@@ -57,38 +54,6 @@ const devServer = {
     disableHostCheck: true,
     contentBase: './public'
 };
-
-// Production configs and setup
-if (isProd) {
-    plugins.push(
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: JSON.stringify('production')
-            }
-        }),
-        new webpack.LoaderOptionsPlugin({
-            minimize: true,
-            debug: false
-        }),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false,
-                screw_ie8: true,
-                conditionals: true,
-                unused: true,
-                comparisons: true,
-                sequences: true,
-                dead_code: true,
-                evaluate: true,
-                if_return: true,
-                join_vars: true,
-            },
-            output: {
-                comments: false,
-            }
-        })
-    );
-}
 
 module.exports = {
     devtool,
