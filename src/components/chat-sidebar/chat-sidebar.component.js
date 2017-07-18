@@ -10,6 +10,7 @@ export class ChatSidebar extends Component {
                 <div className="room">
                     <div className="title">Clasa mea</div>
                     <div className="list">
+                        <ChatUserComponent name="Sabin Vlad" online={true}/>
                         <ChatUserComponent name="Duda Ioan" online={false}/>
                         <ChatUserComponent name="Maverik Ioan" online={false}/>
                         <ChatUserComponent name="Geanina Corondan" online={true}/>
