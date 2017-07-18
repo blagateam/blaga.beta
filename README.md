@@ -11,3 +11,11 @@ First run in bash `npm install`
 After that, just type `npm run serve` and open your browser at `http://localhost:8080/`
 
 That's it!
+
+# How to deploy to firebase
+
+Install firebase globally `npm install -g firebase`
+
+Firebase login `firebase login`
+
+How to actually deploy `npm run deploy`
