@@ -19,3 +19,5 @@ Install firebase globally `npm install -g firebase`
 Firebase login `firebase login`
 
 How to actually deploy `npm run deploy`
+
+This is our URL `https://betabook-cb0a5.firebaseapp.com/`
