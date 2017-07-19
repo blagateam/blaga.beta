@@ -5,11 +5,10 @@ body{
 h1{
   color: #ccc;
   text-align: center;
-  /*font-size: 2.5em;*/
   font-size: 3vw;
 }
 
-#register-form{
+.register-form{
   width: 25%;
   padding: 40px 30px;
   background: #eee;
@@ -39,7 +38,7 @@ input {
 
 button {
   background: #0AC986;
-  dispaly: inline-block;
+  display: inline-block;
   margin:0;
   margin-top: 10px;
   width: 100%;

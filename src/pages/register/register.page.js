@@ -5,7 +5,8 @@ import './register.style.scss';
 export class Register extends Component {
     render() {
         return (
-        <div id="register-form">
+        <div className="register-page">
+          <div className="register-form">
             <h1>Betabook</h1>
             <input type="text" placeholder="Enter Name" name="name" required/>
             <input type="text" placeholder="Enter Email" name="email" required/>
@@ -13,6 +14,7 @@ export class Register extends Component {
             <input type="password" placeholder="Repete Password" name="password" required/>
             <button>Register</button>
             <button>Login</button>
+          </div>
         </div>
         )
     }
