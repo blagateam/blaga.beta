@@ -13,7 +13,7 @@ export class HomePage extends Component {
             <div className="container home-page">
                 <Header />
                 <div className="content">
-                    <ProfileComponent />
+                    <ProfileComponent user={this.props.user} />
                     <TimelineComponent />
                     <ChatSidebar />
                 </div>

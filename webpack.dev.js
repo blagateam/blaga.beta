@@ -51,8 +51,7 @@ const devServer = {
         index: './src/index.html',
     },
     stats: 'minimal',
-    disableHostCheck: true,
-    contentBase: './public'
+    disableHostCheck: true
 };
 
 module.exports = {

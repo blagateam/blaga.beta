@@ -3,6 +3,11 @@ import { Component, h } from 'preact';
 import './header.style.scss';
 
 export class Header extends Component {
+
+    _signOut() {
+        firebase.auth().signOut();
+    }
+
     render() {
         return (
             <header>
@@ -15,8 +20,7 @@ export class Header extends Component {
                     <input className="search" type="text" placeholder="Type your search here" />
                 </div>
                 <div className="links">
-                    <button>Register</button>
-                    <button className="secondary">Login</button>
+                    <button onclick={this._signOut}>Logout</button>
                 </div>
             </header>
         )
