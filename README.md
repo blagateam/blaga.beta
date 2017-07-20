@@ -1,5 +1,7 @@
 # betabook
 
+[![Build Status](https://travis-ci.org/blagateam/blaga.beta.svg?branch=master)](https://travis-ci.org/blagateam/blaga.beta)
+
 # Design guideline
 > Inspiration https://dribbble.com/shots/1021224-Profile/attachments/122396
 
