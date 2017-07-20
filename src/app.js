@@ -20,7 +20,7 @@ export class App extends Component {
                 this.setState({ user });
                 navigate('/');
                 this._setCurrentRouteComponent('/');
-            } else {
+            } else if(this._getRouteFromLocation() === '/') {
                 navigate('/login');
                 this._setCurrentRouteComponent('/login');
             }

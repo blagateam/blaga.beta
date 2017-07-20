@@ -5,16 +5,17 @@ import { render, h } from 'preact';
 import './index.scss';
 import './firebase-setup';
 
-import { navigate } from './core/utilities';
 import { App } from './app';
 import { HomePage } from './pages/home/home.page';
 import { LoginPage } from './pages/login/login.page';
+import { RegisterPage } from './pages/register/register.page';
 
 const appElement = document.getElementById('app');
 
 const routes = {
     '/': HomePage,
-    '/login': LoginPage
+    '/login': LoginPage,
+    '/register': RegisterPage
 };
 
 // Render the application on our element

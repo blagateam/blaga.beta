@@ -4,9 +4,6 @@ import './profile.style.scss';
 
 export class ProfileComponent extends Component {
     render() {
-
-        console.log(this.props.user);
-
         return (
             <div className="profile-component">
                 <img className="image" src="https://api.adorable.io/avatars/12" alt="John Snow"/>
