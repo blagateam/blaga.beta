@@ -66,12 +66,23 @@ export class LoginPage extends Component {
                         <div className="error">
                             {this.state.error.message}
                         </div>
+
                     )}
+
 
                     <input disabled={loading} onkeydown={this._handleKeyLogin} type="text" placeholder="Your email" ref={(el) => this.refs.email = el} />
                     <input disabled={loading} onkeydown={this._handleKeyLogin} type="password" placeholder="Your password" ref={(el) => this.refs.pass = el} />
                     <button disabled={loading} onclick={this._handleLogin}>Login</button>
+
+                    <p>
+                        You don't have an account?<a href="/register"> Register </a>, now!
+                    </p>
+
                 </div>
+            <div className="site-details">
+            <img src="http://skydotinfotech.com/images/software/School%20Website%204.jpg"/>
+            
+            </div>
             </div>
         )
     }
