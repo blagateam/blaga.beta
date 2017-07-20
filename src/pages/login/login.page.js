@@ -54,6 +54,14 @@ export class LoginPage extends Component {
 
         return (
             <div className={classes.join(' ')}>
+               
+
+                <div className="login-bar">
+                    <div className="login-register">
+                     <p> <a href="/register">Register</a> </p>
+                    </div>
+                </div>
+
                 <div className="login-form">
                     <h1>
                         Welcome to betabook!
@@ -65,7 +73,11 @@ export class LoginPage extends Component {
                     {this.state.error && (
                         <div className="error">
                             {this.state.error.message}
-                        </div>
+
+
+
+
+                    </div>
 
                     )}
 
@@ -75,14 +87,16 @@ export class LoginPage extends Component {
                     <button disabled={loading} onclick={this._handleLogin}>Login</button>
 
                     <p>
-                        You don't have an account?<a href="/register"> Register </a>, now!
+                        You don't have an account? <a href="/register">Register</a>, now!
                     </p>
 
+
+                       <div className="site-details">
+
+                       <img src="http://skydotinfotech.com/images/software/School%20Website%204.jpg"/>
+
+                       </div>
                 </div>
-            <div className="site-details">
-            <img src="http://skydotinfotech.com/images/software/School%20Website%204.jpg"/>
-            
-            </div>
             </div>
         )
     }
