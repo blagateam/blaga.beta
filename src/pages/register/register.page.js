@@ -55,7 +55,7 @@ export class RegisterPage extends Component {
                     <input ref={(e) => this.refs.email = e} type="text" placeholder="Enter Email" name="email" required/>
                     <input ref={(e) => this.refs.pass = e} type="password" placeholder="Enter Password" name="password" required/>
                     <button disabled={isLoading} onclick={this._handleRegister}>Register</button>
-                    <button>Login</button>
+                    <p>Already have an account?<a href="/login"> Login</a></p>
                 </div>
             </div>
         )
