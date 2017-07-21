@@ -1,6 +1,6 @@
 {
   "name": "betabook",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Betabook",
   "main": "index.js",
   "scripts": {
