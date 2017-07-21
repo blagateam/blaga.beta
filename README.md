@@ -5,7 +5,7 @@
 # Design guideline
 > Inspiration https://dribbble.com/shots/1021224-Profile/attachments/122396
 
-We need design layout!
+We need design layout! Right?
 
 # Start Develop
 
