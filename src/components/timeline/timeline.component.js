@@ -2,6 +2,8 @@
 import {Component, h} from 'preact';
 import './timeline.style.scss';
 
+import { NotesContent } from '../notes-content/notes-content.component';
+
 export class TimelineComponent extends Component {
     render() {
         return (
@@ -13,24 +15,24 @@ export class TimelineComponent extends Component {
                 </div>
 
                 <div className="Preview">
-                    <div class="About_preview">
+                    <div className="About_preview">
                         <p className="Descriere">Descriere</p>
                     </div>
-                    <div class="Friends_preview">
-                        <div className="row">
+                    <div className="Friends_preview">
+                        <div className="images">
                             <img src="https://api.adorable.io/avatars/2" alt=""/>
                             <img src="https://api.adorable.io/avatars/3" alt=""/>
                             <img src="https://api.adorable.io/avatars/4" alt=""/>
                             <img src="https://api.adorable.io/avatars/5" alt=""/>
                         </div>
-                        <div className="row">
+                        <div className="images">
                             <img src="https://api.adorable.io/avatars/1" alt=""/>
                             <img src="https://api.adorable.io/avatars/4" alt=""/>
                             <img src="https://api.adorable.io/avatars/5" alt=""/>
                             <img src="https://api.adorable.io/avatars/6" alt=""/>
                         </div>
                     </div>
-                    <div class="Carnet_preview">
+                    <div className="Carnet_preview">
                         <div className="Note">
                             <p>Nota 1</p>
                             <p>Nota 2</p>
@@ -40,12 +42,15 @@ export class TimelineComponent extends Component {
                     </div>
                 </div>
 
-                <div className="filters">
-                    <button className="active">all</button>
-                    <button>romana</button>
-                    <button>matematica</button>
-                    <button>engleza</button>
-                    <button>informatica</button>
+                <div className="NotesTOP">
+                    <p className="NotesHeader">Notite</p>
+                </div>
+                <div className="Notes">
+                    <button className="AddNotes">Adauga notita</button>
+                    <input type="text" placeholder="Notita ta..." maxlength="150"></input>
+                </div>
+                <div className="StickyNotes">
+                <NotesContent />
                 </div>
             </div>
         )

@@ -23,6 +23,7 @@ export class ProfileComponent extends Component {
                     <button>Prieteni</button>
                     <button>Grupuri</button>
                     <button>Clasa mea</button>
+                    <button>Arhiva</button>
                 </div>
             </div>
         )

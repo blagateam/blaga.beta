@@ -3,7 +3,7 @@
   flex-direction: column;
   height: 100%;
 
-  .filters, .main_buttons {
+  .main_buttons {
     display: flex;
     flex: 1;
     flex-direction: row;
@@ -22,21 +22,12 @@
       border-bottom: 1px solid #eee;
       border-radius: 0;
       text-transform: capitalize;
+      outline: none;
 
       &:last-child {
         border-right: 0;
       }
-
-      &:hover {
-        color: black;
-      }
-
-      &.active {
-        color: black;
-        background-color: #FFF;
-        border-bottom-color: #01D196;
-      }
-    }
+    }/*button*/
   }
 
   .Preview {
@@ -47,31 +38,36 @@
     max-height: 9em;
 
 
-    .About_preview,.Friends_preview, .Carnet_preview {
+    .About_preview, .Friends_preview, .Carnet_preview {
       background-color: #F9F9F9;
       margin: 0;
-      color: black;
+      color: #666;
       font-size: 0.8em;
-      //padding: 0.5em;
       display: flex;
       border-right: 1px solid #eee;
       border-bottom: 1px solid #eee;
       border-radius: 0;
       text-transform: capitalize;
       flex-direction: column;
-      flex:1;
+      flex: 1;
 
+        .Descriere {
+          margin-left: 5px;
+        }
 
-        .row {
+        .images {
           display: flex;
           flex-direction: row;
+          width: 100%;
+          height: 100%;
 
           img {
-            width: 100%;
-            height: auto;
+            display: flex;
+            width: 25%;
+            height: 100%;
           }
         }
-      }
+      }/*.About_preview, .Friends_preview, .Carnet_preview*/
 
       .Note {
         width: 100%;
@@ -85,6 +81,45 @@
           padding: 0.6em;
           border-bottom: 1px solid #eee;
         }
+      }/*Note*/
+    }/*Preview*/
+
+    .NotesTOP {
+    display: flex;
+    width: 100%;
+    border-top: 8px solid #f9f9f9;
+
+      .NotesHeader {
+        font-family: sans-serif, Arial;
+        margin-left: 5px;
+      }
+    } 
+
+    .Notes {
+      display: flex;
+      width: 100%;
+      background-color: #FFF;
+      color: #666;
+      
+
+      .AddNotes {
+        margin-left: 5px;
+        width: 15%;
+        background-color: #e0e0d1;
+        color: #666;
+        border-radius: 2px;
+      }
+
+      input {
+        margin-left: 5px;
+        margin-right: 5px;
+        padding: 0px 10px;
+        border-radius: 2px;
+        border: 0;
+        width: 85%;
+        outline: none;
+        background-color: #e0e0d1;
+        color: #666;
       }
     }
   }

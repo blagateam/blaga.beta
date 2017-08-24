@@ -1,0 +1,24 @@
+.notes-content-component {
+	display: flex;
+	flex-direction: column;
+	background-color: #efef90;
+	width: 20%;
+	height: 200px;
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-top: 20px;
+
+	.NotesTitle {
+		display: flex;
+		flex-direction: row;
+		
+		h {
+			text-align: center;
+		}
+	}
+
+	.NotesText {
+		display: flex;
+		flex-direction: row;
+	}
+}
