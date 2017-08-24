@@ -1,24 +1,35 @@
 .chat-sidebar-component {
+  display: flex;
+  flex-direction: column;
+  background-color: #F9F9F9;
+  height: 100%;
+
+  .room {
     display: flex;
     flex-direction: column;
-    background-color: #F9F9F9;
-    height: 100%;
 
-    .room {
-        display: flex;
-        flex-direction: column;
+    .title {
+      height: 48px;
+      margin: 0px;
+      color: #888;
+      font-size: 0.8em;
 
-        .title {
-            height: 48px;
-            border-bottom: 1px solid #eee;
-            color: #888;
-            padding: 1.4em 0.5em;
-            font-size: 0.8em;
-        }
-
-        .list {
-            display: flex;
-            flex-direction: column;
-        }
+      .title_button {
+        text-align: left;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        background-color: #e0e0d1;
+        font-size: 1.1em;
+        color: #333;
+        font-family: "Times New Roman", Times, serif;
+        cursor: pointer;
+      }
     }
+
+    .list {
+      display: flex;
+      flex-direction: column;
+    }
+  }
 }

@@ -10,6 +10,7 @@
         height: 30px;
         filter: saturate(0);
         opacity: 0.75;
+        cursor: pointer;
 
         &.online {
             opacity: 1;
@@ -21,5 +22,6 @@
         margin: 0 0 0 0.5em;
         font-size: 0.8em;
         color: #333;
+        cursor: pointer;
     }
 }
