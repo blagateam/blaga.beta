@@ -25,6 +25,8 @@ export class RegisterPage extends Component {
         let index;
         var dropdown = this.refs.dropdown.value;
         var database = firebase.database();
+        var user;
+        var userID;
         
         index = document.getElementById("dropdown");
         dropdown = index.options[index.selectedIndex].text;
@@ -34,21 +36,27 @@ export class RegisterPage extends Component {
             error: null
         });
 
-        firebase.auth().createUserWithEmailAndPassword(email, pass).then(()=>{
-            firebase.database().ref('users').push({
-                email: email,
-                password: pass,
-                name: name,
-                role: dropdown
-            })
+        firebase.auth().createUserWithEmailAndPassword(email, pass)
+            .then(()=>{
 
-        })
+                user  = firebase.auth().currentUser;
+                userID = user.uid;
+
+                firebase.database().ref('users/' + userID).set({
+                    email: email,
+                    password: pass,
+                    name: name,
+                    role: dropdown
+                })
+
+            }) 
+
             .catch(e => {
                 this.setState({
                     loading: false,
                     error: e
                 });
-            });      
+            });     
     }
 
     render() {
