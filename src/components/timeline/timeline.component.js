@@ -5,6 +5,26 @@ import './timeline.style.scss';
 import { NotesContent } from '../notes-content/notes-content.component';
 
 export class TimelineComponent extends Component {
+
+    constructor(...args) {
+        super(...args);
+
+        this.adaugaNotita = this.adaugaNotita.bind(this);
+        
+        this.refs = {};
+    }
+
+    adaugaNotita() {
+        let database = firebase.database();
+        let note = this.refs.note.value;
+
+        database.ref('users').push().set({
+            note: note
+        })
+    }
+
+
+
     render() {
         return (
             <div className="timeline-component">
@@ -46,11 +66,11 @@ export class TimelineComponent extends Component {
                     <p className="NotesHeader">Notite</p>
                 </div>
                 <div className="Notes">
-                    <button className="AddNotes">Adauga notita</button>
-                    <input type="text" placeholder="Notita ta..." maxlength="150"></input>
+                    <button className="AddNotes" onClick={this.adaugaNotita}>Adauga notita</button>
+                    <input type="text" placeholder="Notita ta..." maxlength="150" ref={(el) => this.refs.note = el}></input>
                 </div>
                 <div className="StickyNotes">
-                <NotesContent />
+                <NotesContent user={this.props.user} />
                 </div>
             </div>
         )

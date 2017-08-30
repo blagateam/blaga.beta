@@ -9,12 +9,13 @@ import { ChatSidebar } from '../../components/chat-sidebar/chat-sidebar.componen
 
 export class HomePage extends Component {
     render() {
+        console.log('HomePage', this.props);
         return (
             <div className="container home-page">
                 <Header />
                 <div className="content">
                     <ProfileComponent user={this.props.user} />
-                    <TimelineComponent />
+                    <TimelineComponent user={this.props.user} />
                     <ChatSidebar />
                 </div>
             </div>
