@@ -22,7 +22,9 @@ export class NotesContent extends Component {
     }
 
     componentDidMount() {
-        let database = firebase.database().ref().child('users/notes');
+        let user = firebase.auth().currentUser;
+        let userID = user.uid;
+        let database = firebase.database().ref().child('users/' + userID + '/notes');
         let string = [];
 
         database.once('value', snap => {

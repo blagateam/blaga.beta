@@ -17,8 +17,10 @@ export class TimelineComponent extends Component {
     adaugaNotita() {
         let database = firebase.database();
         let note = this.refs.note.value;
+        let user = firebase.auth().currentUser;
+        let userID = user.uid;
 
-        database.ref('users').push().set({
+        database.ref('users/' + userID + '/notes').push().set({
             note: note
         })
     }
