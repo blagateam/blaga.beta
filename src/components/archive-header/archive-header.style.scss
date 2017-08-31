@@ -1,0 +1,24 @@
+.slider-wrap {
+    display: flex;
+    flex-direction: row;
+    .slider {
+        overflow: hidden;
+        width: 900px;
+        .track {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            transform: translateX( 0px);
+            button {
+                min-width: 100px;
+                margin: 0;
+                font-size: 15px;
+                cursor: pointer;
+            }
+            button:hover{
+                background-color: grey;
+                
+            }
+        }
+    }
+}
