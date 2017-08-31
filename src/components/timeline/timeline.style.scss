@@ -110,7 +110,7 @@
         border-radius: 2px;
       }
 
-      input {
+      .noteInput {
         margin-left: 5px;
         margin-right: 5px;
         padding: 0px 10px;
@@ -121,5 +121,37 @@
         background-color: #e0e0d1;
         color: #666;
       }
-    }
+  	}
+    	.MoveSticky {	
+    		display: flex;
+    		flex-direction: row;
+    		width: 100%;
+
+    		.buttonLeft, .buttonRight {
+    			position: relative;
+    			z-index: 0;
+    			margin-top: 800px;
+    			width: 75px;
+    			margin-top: 20px;
+    			font-size: 20px;
+    			border-radius: 50px;
+    			background-color: #444;
+    			height: 75px;
+    		}
+
+    		.StickyNotes {
+    			display: flex;
+    			width: 700px;
+    			overflow: hidden;
+    			margin: 0 auto;
+
+    			.Track {
+    				display: flex;
+    				margin: 0 auto;
+    				flex-direction: row;
+    				width: 100%;
+    			}
+
+    		}
+    	}
   }
