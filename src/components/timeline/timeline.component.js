@@ -12,6 +12,11 @@ export class TimelineComponent extends Component {
         this.adaugaNotita = this.adaugaNotita.bind(this);
         
         this.refs = {};
+
+        this.moveLeft = this.moveLeft.bind(this);
+        this.moveRight = this.moveRight.bind(this);
+
+        this.index = 0;
     }
 
     adaugaNotita() {
@@ -25,15 +30,52 @@ export class TimelineComponent extends Component {
         })
     }
 
+    componentDidMount(){
+        let Track = document.querySelector( ".Track" );
+        this.maxStickys = (Track.querySelectorAll( ".notes-content-component" ).length-3)/2;
+        console.log( this.maxStickys)
+    }
+
+    moveLeft(){
+        if(this.index >= 1)  {
+            let Track = document.querySelector( ".Track" );
+            this.index--;
+            Track.style.transform = "translateX( -" + ( this.index * 480 ) + "px )"; 
+        }
+    }
+
+   moveRight(){
+    
+        if(this.index < (this.maxStickys)) { 
+        let Track = document.querySelector( ".Track" );
+        this.index++;
+        Track.style.transform = "translateX( -" + ( this.index * 480 ) + "px )";   
+        }
+    }
+
+    AddElements(){
+        const input = document.querySelector("noteInput");
+        const textMessage = input.value;
+
+          messageContentEl.appendChild( messageText );
+
+    }
+
 
 
     render() {
         return (
             <div className="timeline-component">
                 <div className="main_buttons">
-                    <button>About</button>
-                    <button>Friends</button>
-                    <button>Carnet</button>
+                    <div className="topHeaders1"> 
+                        <p className="Headers">About</p> 
+                        <button className="addDescriere">&#9998;</button> 
+                    </div>
+                    <div className="topHeaders2"> 
+                        <p className="Headers">Friends</p>
+                        </div>
+                    <div className="topHeaders3"> 
+                        <p className="Headers">Carnet</p> </div>
                 </div>
 
                 <div className="Preview">
@@ -68,11 +110,24 @@ export class TimelineComponent extends Component {
                     <p className="NotesHeader">Notite</p>
                 </div>
                 <div className="Notes">
-                    <button className="AddNotes" onClick={this.adaugaNotita}>Adauga notita</button>
-                    <input type="text" placeholder="Notita ta..." maxlength="150" ref={(el) => this.refs.note = el}></input>
+                    <button onClick={this.AddElements} className="AddNotes" >Adauga notita</button>
+                    <input className="noteInput" type="text"  placeholder="Notita ta..." maxlength="150" ref={(el) => this.refs.note = el}></input>
                 </div>
-                <div className="StickyNotes">
-                <NotesContent user={this.props.user} />
+                <div className="MoveSticky">
+                <button onClick={this.moveLeft} className="buttonLeft">&#10096;</button>
+                    <div className="StickyNotes">
+                        <div className="Track">
+                        <NotesContent user={this.props.user} />
+                        <NotesContent user={this.props.user} />
+                        <NotesContent user={this.props.user} />
+                        <NotesContent user={this.props.user} />
+                        <NotesContent user={this.props.user} />
+                        <NotesContent user={this.props.user} />
+                        <NotesContent user={this.props.user} />
+                        <NotesContent user={this.props.user} />
+                        </div>
+                    </div>
+                <button onClick={this.moveRight} className="buttonRight">&#10097;</button>
                 </div>
             </div>
         )

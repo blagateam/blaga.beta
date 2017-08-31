@@ -35,14 +35,6 @@ export class NotesContent extends Component {
                     return val[key];
                 })
             })
-            /*string.push({
-                note: snap.val().note
-            })
-        })
-
-        this.setState({
-            text: string
-        })*/
         })
     }
 
@@ -57,6 +49,18 @@ export class NotesContent extends Component {
                             {item.note}
                         </div>)
                 })}
+                <div className="TopContent">
+                    <div className="NotesTitle">
+                    <h3>{this.props.title}</h3>
+                    </div>
+                    <div className="TopButtons">
+                    <button className="MaximizeButton">&#10066;</button>
+                    <button className="CloseButton">&#10006;</button>
+                    </div>
+                </div>
+                <div className="NotesText">
+                <p>Write the text...</p>
+                </div>
             </div>
 
             )
