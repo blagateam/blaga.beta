@@ -1,41 +1,90 @@
 .timeline-component {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .filters, .main_buttons {
     display: flex;
-    flex-direction: column;
-    height: 100%;
+    flex: 1;
+    flex-direction: row;
+    max-height: 3em;
+    align-items: stretch;
 
-    .filters {
-        display: flex;
-        flex: 1;
-        flex-direction: row;
-        max-height: 3em;
-        align-items: stretch;
+    button {
+      background-color: #F9F9F9;
+      margin: 0;
+      color: #ccc;
+      font-size: 0.8em;
+      padding: 0.5em;
+      display: flex;
+      flex: 1;
+      border-right: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+      border-radius: 0;
+      text-transform: capitalize;
 
-        button {
-            background-color: #F9F9F9;
-            margin: 0;
-            color: #ccc;
-            font-size: 0.8em;
-            padding: 0.5em;
-            display: flex;
-            flex: 1;
-            border-right: 1px solid #eee;
-            border-bottom: 1px solid #eee;
-            border-radius: 0;
-            text-transform: capitalize;
+      &:last-child {
+        border-right: 0;
+      }
 
-            &:last-child {
-                border-right: 0;
-            }
+      &:hover {
+        color: black;
+      }
 
-            &:hover {
-                color: black;
-            }
-
-            &.active {
-                color: black;
-                background-color: #FFF;
-                border-bottom-color: #01D196;
-            }
-        }
+      &.active {
+        color: black;
+        background-color: #FFF;
+        border-bottom-color: #01D196;
+      }
     }
-}
+  }
+
+  .Preview {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    align-items: stretch;
+    max-height: 9em;
+
+
+    .About_preview,.Friends_preview, .Carnet_preview {
+      background-color: #F9F9F9;
+      margin: 0;
+      color: black;
+      font-size: 0.8em;
+      //padding: 0.5em;
+      display: flex;
+      border-right: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+      border-radius: 0;
+      text-transform: capitalize;
+      flex-direction: column;
+      flex:1;
+
+
+        .row {
+          display: flex;
+          flex-direction: row;
+
+          img {
+            width: 100%;
+            height: auto;
+          }
+        }
+      }
+
+      .Note {
+        width: 100%;
+        height: 100%;
+
+        p {
+          margin: 0;
+          width: 100%;
+          height: 25%;
+          text-align: center;
+          padding: 0.6em;
+          border-bottom: 1px solid #eee;
+        }
+      }
+    }
+  }

@@ -1,0 +1,44 @@
+.archive-content-component {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    background-color: #FFFFFF;
+    .matHeader {
+        display: flex;
+        flex-direction: row;
+        background-color: #F1F2F4;
+        margin: 0;
+        h1 {
+            font-size: 30px;
+            width: 100%;
+            color: #333333;
+            margin: 5px;
+        }
+        button {
+            background-color: #01D196;
+            border-left: 0.5px solid #444444;
+            font-size: 15px;
+            //margin: 0;
+            cursor: pointer;
+            margin: 2.56 px;
+            
+        }
+        input {
+            color: #444444;
+            font-size: 18px;
+            width: 40%;
+            margin: 10px 0;
+        }
+    }
+    .FilesBody {
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+        max-height: 3em;
+        align-items: stretch;
+        padding: 5px 0 0 10px;
+        flex-flow: row wrap;
+        margin-left: 25px;
+    }
+}
