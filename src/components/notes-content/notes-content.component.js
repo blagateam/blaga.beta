@@ -8,7 +8,8 @@ export class NotesContent extends Component {
     {
         super(...args);
 
-        //this.showNote = this.showNote.bind(this);
+        
+        this.getNotes = this.getNotes.bind(this);
 
         this.state={
             notes: []
@@ -21,7 +22,7 @@ export class NotesContent extends Component {
         console.log('props', ...p );
     }
 
-    componentDidMount() {
+    getNotes() {
         let user = firebase.auth().currentUser;
         let userID = user.uid;
         let database = firebase.database().ref().child('users/' + userID + '/notes');

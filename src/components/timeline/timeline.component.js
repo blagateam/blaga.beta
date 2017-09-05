@@ -10,12 +10,13 @@ export class TimelineComponent extends Component {
         super(...args);
 
         this.adaugaNotita = this.adaugaNotita.bind(this);
-        
-        this.refs = {};
-
+        this.addAbout = this.addAbout.bind(this);
+        this.showAbout = this.showAbout.bind(this);
         this.moveLeft = this.moveLeft.bind(this);
         this.moveRight = this.moveRight.bind(this);
 
+        this.state = {};
+        this.refs = {};
         this.index = 0;
     }
 
@@ -30,10 +31,25 @@ export class TimelineComponent extends Component {
         })
     }
 
+    componentWillUpdate(){
+        console.log("intra");
+        let database = firebase.database();
+        let user;
+        let userID;
+
+        user = firebase.auth().currentUser;
+        userID = user.uid;
+
+        let ref = database.ref("users/" + userID + "/about");
+
+        ref.on('value', function(snapshot){
+            document.querySelector(".Descriere").innerHTML = snapshot.val().about;
+        })
+    }
+
     componentDidMount(){
         let Track = document.querySelector( ".Track" );
         this.maxStickys = (Track.querySelectorAll( ".notes-content-component" ).length-3)/2;
-        console.log( this.maxStickys)
     }
 
     moveLeft(){
@@ -61,7 +77,34 @@ export class TimelineComponent extends Component {
 
     }
 
+    showInput(){
+        document.querySelector(".homeInput").style.display = "inline-block";
+        document.querySelector(".addDescriere").style.display = "none";
+        document.querySelector(".Descriere").style.display = "none";
+        document.querySelector(".doneDescriere").style.display = "inline-block";
+    }
 
+    showAbout(){
+        //din baza de date
+    }
+
+    addAbout(){
+        let database = firebase.database();
+        let user = firebase.auth().currentUser;
+        let userID = user.uid;
+        let about = this.refs.about.value;
+
+        document.querySelector(".homeInput").style.display = "none";
+        document.querySelector(".addDescriere").style.display = "inline-block";
+        document.querySelector(".Descriere").style.display = "inline-block";
+        document.querySelector(".doneDescriere").style.display = "none";
+
+        database.ref("users/" + userID + "/about").set({
+            about: about
+            })
+
+        this.setState({about: about});
+    }
 
     render() {
         return (
@@ -69,7 +112,8 @@ export class TimelineComponent extends Component {
                 <div className="main_buttons">
                     <div className="topHeaders1"> 
                         <p className="Headers">About</p> 
-                        <button className="addDescriere">&#9998;</button> 
+                        <button className="addDescriere" onClick={this.showInput}>&#9998;</button>
+                        <button className="doneDescriere" onClick={this.addAbout}>&#x2714;</button>
                     </div>
                     <div className="topHeaders2"> 
                         <p className="Headers">Friends</p>
@@ -80,7 +124,8 @@ export class TimelineComponent extends Component {
 
                 <div className="Preview">
                     <div className="About_preview">
-                        <p className="Descriere">Descriere</p>
+                        <p className="Descriere">{this.state.about}</p>
+                        <input className = "homeInput" ref={(e) => this.refs.about = e} type="text" placeholder="Ceva despre tine..."></input>
                     </div>
                     <div className="Friends_preview">
                         <div className="images">
@@ -130,6 +175,6 @@ export class TimelineComponent extends Component {
                 <button onClick={this.moveRight} className="buttonRight">&#10097;</button>
                 </div>
             </div>
-        )
-    }
+        )}
+
 }
