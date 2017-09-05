@@ -1,0 +1,27 @@
+.catalog-component{
+	display: flex;
+	flex-direction: column;
+  	flex: 1;
+
+  	.catalogBottom {
+  		display: flex;
+  		flex-direction: row;
+  		width: 100%;
+  		
+  		height: auto;
+
+  		
+  		.PartNote {
+  			display: flex;
+  			flex-direction: column;
+  			width: 75%;
+  			margin-right: 5px;
+  		}
+
+  		.PartAbsente {
+  			display: flex;
+  			flex-direction: column;
+  			width: 25%;
+  		}
+  	}
+}

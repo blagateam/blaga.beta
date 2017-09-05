@@ -1,0 +1,25 @@
+.catalog-note {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	height: 35px;
+
+
+	.DataNota, .nota, .atasament {
+		display: flex;
+		flex-direction: row;
+		border-right: 1px solid #eeeeee;
+		border-bottom: 1px solid #eeeeee; ;
+		background-color: #f9f9f9;
+	}
+
+	.DataNota, .nota {
+		flex: 1;
+	}
+
+	.atasamentPoza {
+		height: 35px;
+		width: 35px;
+	}
+			
+}
