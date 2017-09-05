@@ -17,7 +17,6 @@ export class LoginPage extends Component {
         this.refs = {};
     }
 
-
     _handleKeyLogin(e) {
         if (e.keyCode === 13) {
             this._handleLogin();
@@ -55,11 +54,7 @@ export class LoginPage extends Component {
 
         return (
             <div className={classes.join(' ')}>
-            
-            <div className="login">
                 <div className="login-form">
-                    
-
                     <h1>
                         Welcome to betabook!
                     </h1>
@@ -67,34 +62,17 @@ export class LoginPage extends Component {
                         Please fill in your details to log-in
                     </p>
 
-                    
-                    {this.state.error && (
-                        <div className="error">
-                            {this.state.error.message}
-                        </div>
-
-                    )}
-
                     <input disabled={loading} onkeydown={this._handleKeyLogin} type="text" placeholder="Your email" ref={(el) => this.refs.email = el} />
                     <input disabled={loading} onkeydown={this._handleKeyLogin} type="password" placeholder="Your password" ref={(el) => this.refs.pass = el} />
                     <button disabled={loading} onclick={this._handleLogin}>Login</button>
-
-                    <p>
-                        You don't have an account? <a href="/register">Register</a>, now!
-                    </p>
-
+                    <p className="pRegister">You don't have an account? <a href="/register">Register</a></p>
                 </div>
-                <div className="site-details">
-                    <img src="http://skydotinfotech.com/images/software/School%20Website%204.jpg"/>
-            
-                </div>
-
-                 </div>
-
+                {this.state.error && (
+                        <div className="error">
+                            {this.state.error.message}
+                        </div>
+                    )}
             </div>
-
-
         )
-
     }
 }
