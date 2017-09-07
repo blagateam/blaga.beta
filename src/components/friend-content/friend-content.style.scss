@@ -1,0 +1,45 @@
+.friend-content-component {
+    display: flex;
+    background-color: #F9F9F9;
+    border: 0.5px solid #999;
+    position: relative;
+    .friend-box {
+        display: flex;
+        flex-direction: row;
+        height: fit-content;
+        padding: 10px;
+
+        .friend-info {
+            display: flex;
+            flex-direction: row;
+            height: fit-content;
+            
+            p {
+                font-size: 18px;
+                margin: 0;
+                margin-top: 13px;
+            }
+
+            .friend-class{
+                margin-left: 10px;
+            }
+
+            img {
+                width: 45px;
+                height: 45px;
+                margin-right: 10px;
+            }
+
+        }
+
+        .friend-buttons {
+            font-size: 18px;
+            position: absolute;
+            right: 5px;
+            top: 18px;
+            .add-button {
+            display: none;
+            }
+        }
+    }
+}
