@@ -35,7 +35,7 @@ export class RegisterPage extends Component {
     }
 
     _handleRegister() {
-        let name = this.refs.name.value;
+        let name = this.refs.name.value.toLowerCase();
         let email = this.refs.email.value;
         let pass = this.refs.pass.value;
         let index;
@@ -63,14 +63,9 @@ export class RegisterPage extends Component {
                     email: email,
                     password: pass,
                     name: name,
-                    role: dropdown
+                    role: dropdown,
+                    clasa: clasa
                 })
-
-                if(dropdown == "Elev"){
-                    firebase.database().ref('users/' + userID).set({
-                        clasa: clasa
-                    })
-                }
 
             }) 
 
@@ -105,12 +100,13 @@ export class RegisterPage extends Component {
                     <input ref={(e) => this.refs.pass = e} type="password" placeholder="Enter password" name="password" required/>
 
                     <select id="dropdown" onChange={this.selectClass} ref={(e) => this.refs.dropdown = e} required>
-                        <option value="null">Not chosen</option>
+                        <option value="">Not chosen</option>
                         <option value="elev">Elev</option>
                         <option value="parinte">Parinte</option>
                         <option value="profesor">Profesor</option>
                     </select>
                     <select id="clasa" className="clasa" ref={(e) => this.refs.clasa = e} required>
+                        <option value="">Not chosen</option>
                         <option value="9">IX</option>
                         <option value="10">X</option>
                         <option value="11">XI</option>
