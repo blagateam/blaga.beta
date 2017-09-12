@@ -8,6 +8,7 @@ export class FriendContent extends Component {
 
         this.name = "";
         this.clasa = "";
+        this.isFriend = false;
 
         this.remove = this.remove.bind(this);
     }
@@ -16,7 +17,24 @@ export class FriendContent extends Component {
         let database = firebase.database().ref('users/' + this.props.friendId);
         database.once('value', snap => {
             this.name = snap.val().name,
-                this.clasa = snap.val().clasa
+            this.clasa = snap.val().clasa
+        })
+
+        let user;
+        let userID;
+
+        user = firebase.auth().currentUser;
+        userID = user.uid;
+
+        let db = firebase.database().ref('users/' + userID + '/friends');
+        db.on("value", snap => {
+            snap.forEach(data =>{
+                if(data.val() == this.props.friendId){
+                    this.isFriend = true;
+                    console.log("Este prieten")
+                }
+            })
+            
         })
     }
 

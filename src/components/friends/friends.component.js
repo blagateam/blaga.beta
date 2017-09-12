@@ -71,17 +71,16 @@ export class FriendsComponent extends Component {
             })
         })
     }
-    //ref={(e) => { this.refs.text = e }} 
+   
     search(event) {
-        let searchText = event.target.value;
+        let searchText = event.target.value.toLowerCase();
         console.log(event.target.value);
         if (searchText == "") {
             this.showFriends();
         } else {
             let searchPeople = [];
             firebase.database().ref().child("users").orderByChild('name').startAt(searchText).endAt(searchText + "\uf8ff").on("value", snap => {
-                snap.forEach(function (data) {
-                    //console.log(data.key)
+                snap.forEach( data => {
                     searchPeople.push(data.key)
                     searchPeople.push(data.key)
                     searchPeople.push(data.key)
