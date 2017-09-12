@@ -6,18 +6,26 @@ export class FriendContent extends Component {
     constructor() {
         super();
 
-        this.name = "";
-        this.clasa = "";
+        this.state = {
+            name: "",
+            clasa: "",
+        }
+
         this.isFriend = false;
 
         this.remove = this.remove.bind(this);
+        this.addF = this.addF.bind(this);
     }
 
     componentWillMount() {
         let database = firebase.database().ref('users/' + this.props.friendId);
         database.once('value', snap => {
-            this.name = snap.val().name,
-            this.clasa = snap.val().clasa
+            this.setState({
+                name: snap.val().name,
+            clasa: snap.val().clasa,
+            })
+            // this.name = snap.val().name;
+            // this.clasa = snap.val().clasa;
         })
 
         let user;
@@ -28,18 +36,21 @@ export class FriendContent extends Component {
 
         let db = firebase.database().ref('users/' + userID + '/friends');
         db.on("value", snap => {
-            snap.forEach(data =>{
-                if(data.val() == this.props.friendId){
+            snap.forEach(data => {
+                if (data.val() == this.props.friendId) {
                     this.isFriend = true;
-                    console.log("Este prieten")
+                    //console.log("Este prieten")
                 }
             })
-            
+
         })
     }
 
     remove() {
         this.props.removeFriend(this.props.friendId)
+    }
+    addF() {
+        this.props.addFriend(this.props.friendId);
     }
 
     render() {
@@ -48,13 +59,12 @@ export class FriendContent extends Component {
                 <div className="friend-box">
                     <div className="friend-info">
                         <img src='https://api.adorable.io/avatars/6' />
-                        <p className="friend-name">{this.name}</p>
-                        <p className="friend-class">{this.clasa}</p>
+                        <p className="friend-name">{this.state.name}</p>
+                        <p className="friend-class">{this.state.clasa}</p>
                     </div>
                     <div className="friend-buttons">
                         <button>Chat</button>
-                        <button className="add-button">&#x2b;</button>
-                        <button onClick={this.remove}>&minus;</button>
+                        {(this.isFriend == true) ? <button onClick={this.remove}>&minus;</button> : <button onClick={this.addF}>&#x2b;</button>}
                     </div>
                 </div>
             </div>

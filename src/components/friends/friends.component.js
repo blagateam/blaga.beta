@@ -71,10 +71,24 @@ export class FriendsComponent extends Component {
             })
         })
     }
+
+    //Resolve the add friend
+    addFriend(id){
+        let database = firebase.database();
+        let user;
+        let userID;
+
+        user = firebase.auth().currentUser;
+        userID = user.uid;
+
+        let ref = database.ref("users/" + userID + "/friends" ).push().set({
+            id:id
+        });
+    }
    
     search(event) {
         let searchText = event.target.value.toLowerCase();
-        console.log(event.target.value);
+        //console.log(event.target.value);
         if (searchText == "") {
             this.showFriends();
         } else {
@@ -88,6 +102,7 @@ export class FriendsComponent extends Component {
                 this.setState({
                     friendsId: searchPeople
                 })
+                console.log(this.state.friendsId)
             })
         }
     }
@@ -100,7 +115,7 @@ export class FriendsComponent extends Component {
                     {
                         this.state.friendsId.map((ids) => {
                             return (
-                                <FriendContent friendId={ids} removeFriend={this.removeFriend} />
+                                <FriendContent friendId={ids} removeFriend={this.removeFriend} addFriend={this.addFriend} />
                             )
                         })
                     }
