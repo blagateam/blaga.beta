@@ -102,7 +102,6 @@ export class FriendsComponent extends Component {
                 this.setState({
                     friendsId: searchPeople
                 })
-                console.log(this.state.friendsId)
             })
         }
     }

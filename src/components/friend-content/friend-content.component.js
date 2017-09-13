@@ -21,7 +21,7 @@ export class FriendContent extends Component {
         let database = firebase.database().ref('users/' + this.props.friendId);
         database.once('value', snap => {
             this.setState({
-                name: snap.val().name,
+            name: snap.val().name,
             clasa: snap.val().clasa,
             })
             // this.name = snap.val().name;
@@ -39,7 +39,6 @@ export class FriendContent extends Component {
             snap.forEach(data => {
                 if (data.val() == this.props.friendId) {
                     this.isFriend = true;
-                    //console.log("Este prieten")
                 }
             })
 
