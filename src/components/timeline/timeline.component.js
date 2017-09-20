@@ -2,6 +2,7 @@
 import { Component, h } from 'preact';
 import './timeline.style.scss';
 
+
 export class TimelineComponent extends Component {
     render() {
         return (
@@ -12,7 +13,9 @@ export class TimelineComponent extends Component {
                     <button>matematica</button>
                     <button>engleza</button>
                     <button>informatica</button>
+
                 </div>
+                
             </div>
         )
     }
