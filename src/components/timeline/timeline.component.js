@@ -11,11 +11,12 @@ export class TimelineComponent extends Component {
 
         this.adaugaNotita = this.adaugaNotita.bind(this);
         this.addAbout = this.addAbout.bind(this);
-        this.showAbout = this.showAbout.bind(this);
         this.moveLeft = this.moveLeft.bind(this);
         this.moveRight = this.moveRight.bind(this);
 
-        this.state = {};
+        this.state = {
+            notesArray: []
+        };
         this.refs = {};
         this.index = 0;
     }
@@ -25,26 +26,49 @@ export class TimelineComponent extends Component {
         let note = this.refs.note.value;
         let user = firebase.auth().currentUser;
         let userID = user.uid;
+        
 
-        database.ref('users/' + userID + '/notes').push().set({
+        database.ref('users/' + userID + '/notes' ).push().set({
             note: note
         })
     }
 
     componentWillUpdate(){
-        console.log("intra");
         let database = firebase.database();
         let user;
         let userID;
+        let textArray = this.state.notesArray;
+        let array = [];
+        var variable;
 
         user = firebase.auth().currentUser;
         userID = user.uid;
 
-        let ref = database.ref("users/" + userID + "/about");
+        let refAbout = database.ref("users/" + userID + "/about");
+        let refMarks = database.ref("users/" + userID + "/lastmarks");
 
-        ref.on('value', function(snapshot){
+        refAbout.on('value', function(snapshot){
             document.querySelector(".Descriere").innerHTML = snapshot.val().about;
         })
+
+        refMarks.on('value', function(snapshot){
+            document.querySelector(".nota1").innerHTML = snapshot.val().nota4;
+            document.querySelector(".nota2").innerHTML = snapshot.val().nota3;
+            document.querySelector(".nota3").innerHTML = snapshot.val().nota2;
+            document.querySelector(".nota4").innerHTML = snapshot.val().nota1;
+        })
+
+        database.ref('users/'+userID+'/notes').on('value', snap => {
+            variable = snap.val();
+
+            Object.keys(variable).map(key =>{
+                array.push(variable[key]);
+            })
+
+            
+            //a se lucra in acest scope pt ca nu mere altundeva fmm de prost si javascript <3 8====D
+        }) 
+        
     }
 
     componentDidMount(){
@@ -63,18 +87,10 @@ export class TimelineComponent extends Component {
    moveRight(){
     
         if(this.index < (this.maxStickys)) { 
-        let Track = document.querySelector( ".Track" );
-        this.index++;
-        Track.style.transform = "translateX( -" + ( this.index * 480 ) + "px )";   
+            let Track = document.querySelector( ".Track" );
+            this.index++;
+            Track.style.transform = "translateX( -" + ( this.index * 480 ) + "px )";   
         }
-    }
-
-    AddElements(){
-        const input = document.querySelector("noteInput");
-        const textMessage = input.value;
-
-          messageContentEl.appendChild( messageText );
-
     }
 
     showInput(){
@@ -82,10 +98,6 @@ export class TimelineComponent extends Component {
         document.querySelector(".addDescriere").style.display = "none";
         document.querySelector(".Descriere").style.display = "none";
         document.querySelector(".doneDescriere").style.display = "inline-block";
-    }
-
-    showAbout(){
-        //din baza de date
     }
 
     addAbout(){
@@ -143,10 +155,10 @@ export class TimelineComponent extends Component {
                     </div>
                     <div className="Carnet_preview">
                         <div className="Note">
-                            <p>Nota 1</p>
-                            <p>Nota 2</p>
-                            <p>Nota 3</p>
-                            <p>Nota 4</p>
+                            <p className="nota1"></p>
+                            <p className="nota2"></p>
+                            <p className="nota3"></p>
+                            <p className="nota4"></p>
                         </div>
                     </div>
                 </div>
@@ -155,21 +167,18 @@ export class TimelineComponent extends Component {
                     <p className="NotesHeader">Notite</p>
                 </div>
                 <div className="Notes">
-                    <button onClick={this.AddElements} className="AddNotes" >Adauga notita</button>
+                    <button onClick={this.adaugaNotita} className="AddNotes" >Adauga notita</button>
                     <input className="noteInput" type="text"  placeholder="Notita ta..." maxlength="150" ref={(el) => this.refs.note = el}></input>
                 </div>
                 <div className="MoveSticky">
                 <button onClick={this.moveLeft} className="buttonLeft">&#10096;</button>
                     <div className="StickyNotes">
                         <div className="Track">
-                        <NotesContent user={this.props.user} />
-                        <NotesContent user={this.props.user} />
-                        <NotesContent user={this.props.user} />
-                        <NotesContent user={this.props.user} />
-                        <NotesContent user={this.props.user} />
-                        <NotesContent user={this.props.user} />
-                        <NotesContent user={this.props.user} />
-                        <NotesContent user={this.props.user} />
+                            {
+                                this.state.notesArray.map((content)=>{ 
+                                return ( <NotesContent noteText={content} /> 
+                                )}
+                            )}
                         </div>
                     </div>
                 <button onClick={this.moveRight} className="buttonRight">&#10097;</button>
