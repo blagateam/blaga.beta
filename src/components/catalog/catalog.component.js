@@ -15,12 +15,29 @@ export class CatalogComponent extends Component {
             	<CatalogProf />
             	<div className="catalogBottom">
 	            	<div className="PartNote">
+	            		<div className="HeaderNota">
+	            			<div className="P_Data">
+	            				<p>Data</p>
+	            			</div>
+	            			<div className="P_Tipul">
+	            				<p>Tipul</p>
+	            			</div>
+	            			<div className="P_Nota">
+	            				<p>Nota</p>
+	            			</div>
+	            			<div className="P_Poza">
+	            				<p>Poza</p>
+	            			</div>
+	            		</div>
 	            		<CatalogNote />
 	            		<CatalogNote />
 	            		<CatalogNote />
 	            		<CatalogNote />
 	            	</div>
 	            	<div className="PartAbsente">
+	            		<div className="HeaderAbsente">
+	            			<p>Absente</p>
+	            		</div>
 	            		<CatalogAbsente />
 	            		<CatalogAbsente />
 	            		<CatalogAbsente />

@@ -8,8 +8,11 @@ export class CatalogNote extends Component {
         return (
             <div className="catalog-note">
             	<div className="DataNota">
-            		<p className="DataNasterii">10/10</p>
+            		<p className="DataNasterii">10/10/2017</p>
             	</div>
+                <div className="TipNota">
+                    <p className="TipulNotei">test</p>
+                </div>
             	<div className="nota">
             		<p className="notaElev">10</p>
             	</div>

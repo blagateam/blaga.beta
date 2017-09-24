@@ -16,12 +16,32 @@
   			flex-direction: column;
   			width: 75%;
   			margin-right: 5px;
+
+        .HeaderNota {
+          display: flex;
+          
+          width: 75%;
+          margin-right: 5px;
+
+            .P_Data, .P_Tipul, .P_Nota, .P_Poza{
+              display: flex;
+              flex: 1;
+            }
+
+            /*.P_Poza{
+              display: flex;
+            }*/
+        }
   		}
 
   		.PartAbsente {
   			display: flex;
   			flex-direction: column;
   			width: 25%;
+
+        .HeaderAbsente {
+          display: flex;
+        }
   		}
   	}
 }
