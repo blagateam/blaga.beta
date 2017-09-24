@@ -2,6 +2,9 @@
     align-items: center;
     justify-content: center;
     flex-direction: row ;
+    width: 100%;
+    height: 100%;
+    background-color: #FFF;
 
     
     &.loading {
@@ -14,13 +17,13 @@
 
     .login-form {
         width: 500px;
-        height: 320px;
+        height: 90%;
         display: flex;
         flex-direction: column;
         margin: 0;
         background-color: #01D196;
         padding: 1em;
-        border-radius: 2px;
+        border-radius: 5px;
         box-shadow: 0 20px 200px #01D196;
         transform: scale(1);
         filter: blur(0);
@@ -35,15 +38,13 @@
         }
 
         h1 {
-            margin: 0 0 0.5em;
-            padding: 2px;
-            color: white;
-            font-weight: bold;
-            font-size: 40px;
+        color: #FFF;
+        text-align: center;
+         font-size: 4em;
         }
 
         p {
-            font-size: 1em;
+            font-size: 1.2em;
             color: whitesmoke;
             margin: 0 0 0.5em;
             &:last-child {
@@ -54,14 +55,24 @@
         button,
         input {
             padding: 0.5em 1em;
-            font-size: 1em;
-            margin: 0 0 0.5em;
-            border: 0;
-            border-radius: 2px;
+            border-radius: 4px;
+            margin-top: 10px;
+            font-size: 20px;
+        
+
 
             &:last-child {
                 margin: 0;
             }
+        }
+
+        input {
+            border: 1px solid #ddd;
+        }
+
+        button {
+            margin-left: 0px;
+            margin-right: 0px;
         }
     }
 

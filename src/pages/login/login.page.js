@@ -56,7 +56,7 @@ export class LoginPage extends Component {
             <div className={classes.join(' ')}>
                 <div className="login-form">
                     <h1>
-                        Welcome to betabook!
+                        Betabook
                     </h1>
                     <p>
                         Please fill in your details to log-in
