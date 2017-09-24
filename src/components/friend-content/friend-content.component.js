@@ -9,9 +9,8 @@ export class FriendContent extends Component {
         this.state = {
             name: "",
             clasa: "",
+            isFriend : false
         }
-
-        this.isFriend = false;
 
         this.remove = this.remove.bind(this);
         this.addF = this.addF.bind(this);
@@ -24,8 +23,6 @@ export class FriendContent extends Component {
             name: snap.val().name,
             clasa: snap.val().clasa,
             })
-            // this.name = snap.val().name;
-            // this.clasa = snap.val().clasa;
         })
 
         let user;
@@ -35,13 +32,23 @@ export class FriendContent extends Component {
         userID = user.uid;
 
         let db = firebase.database().ref('users/' + userID + '/friends');
+        let fr = [];
+        
         db.on("value", snap => {
-            snap.forEach(data => {
-                if (data.val() == this.props.friendId) {
-                    this.isFriend = true;
+            let val= snap.val();
+            let keys=Object.keys(val)
+            for(let i=0; i<keys.length;i++){
+                let k=keys[i];
+                fr.push(val[k]);
+            }
+            for(let i=0; i<fr.length;i++){
+                if (fr[i] == this.props.friendId) {
+                    this.setState({
+                        isFriend : true
+                    })
+                    break;
                 }
-            })
-
+            }
         })
     }
 
@@ -49,6 +56,9 @@ export class FriendContent extends Component {
         this.props.removeFriend(this.props.friendId)
     }
     addF() {
+        this.setState({
+            isFriend : true
+        })
         this.props.addFriend(this.props.friendId);
     }
 
@@ -63,7 +73,7 @@ export class FriendContent extends Component {
                     </div>
                     <div className="friend-buttons">
                         <button>Chat</button>
-                        {(this.isFriend == true) ? <button onClick={this.remove}>&minus;</button> : <button onClick={this.addF}>&#x2b;</button>}
+                        {(this.state.isFriend == true) ? <button classsName="radu" onClick={this.remove}>&minus;</button> : <button onClick={this.addF}>&#x2b;</button>}
                     </div>
                 </div>
             </div>

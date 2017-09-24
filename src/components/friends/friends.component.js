@@ -12,10 +12,11 @@ export class FriendsComponent extends Component {
             friendsId: [],
         };
 
-        this.refs = {};
-
         this.search = this.search.bind(this);
         this.showFriends = this.showFriends.bind(this);
+        this.removeFriend = this.removeFriend.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
+
     }
 
     componentWillUpdate() {
@@ -31,24 +32,17 @@ export class FriendsComponent extends Component {
         userID = user.uid;
 
         let ref = database.ref("users/" + userID + "/friends");
-
-        ref.once('value', snap => {
-
-            let val = snap.val();
-            if (val != null) {
-                let x = Object.keys(val).map(key => {
-                    return val[key];
-                })
-
-                this.setState({
-                    friendsId: x
-                })
+        let dbFriends = [];
+        ref.once('value', snap=>{
+            let val= snap.val();
+            let keys=Object.keys(val)
+            for(let i=0; i<keys.length;i++){
+                let k=keys[i];
+                dbFriends.push(val[k]);
             }
-            else {
-                this.setState({
-                    friendsId: []
-                })
-            }
+            this.setState({
+                friendsId:dbFriends
+            })
         })
     }
 
@@ -60,20 +54,31 @@ export class FriendsComponent extends Component {
         user = firebase.auth().currentUser;
         userID = user.uid;
 
-        let ref = database.ref("users/" + userID + "/friends/" + id);
-        ref.remove();
-        ref.on('child_removed', oldSnap => {
-            let index = friendsId.findIndex(x => x.id === oldSnap.key);
-            friendsId.splice(index, 1);
-
-            this.setState({
-                friendsId: friendsId
-            })
+        let oldData = this.state.friendsId;
+        
+        let ref = database.ref("users/" + userID + "/friends");
+        let removedFriend = ''
+        ref.once('value', snap=>{
+            let val= snap.val();
+            let keys=Object.keys(val)
+            for(let i=0; i<keys.length;i++){
+                let k=keys[i];
+                if(val[k]==id)
+                    removedFriend = k;
+            }
         })
+        ref = database.ref("users/" + userID + "/friends/" + removedFriend);
+        ref.remove();
+        let index = oldData.findIndex(x => x==id);
+        oldData.splice(index, 1);
+        this.setState({
+            friendsId: oldData
+        })
+       
     }
 
     //Resolve the add friend
-    addFriend(id){
+    addFriend(id) {
         let database = firebase.database();
         let user;
         let userID;
@@ -81,29 +86,33 @@ export class FriendsComponent extends Component {
         user = firebase.auth().currentUser;
         userID = user.uid;
 
-        let ref = database.ref("users/" + userID + "/friends" ).push().set({
-            id:id
-        });
+        let ref = database.ref("users/" + userID + "/friends").push(id)
     }
-   
+
     search(event) {
         let searchText = event.target.value.toLowerCase();
         //console.log(event.target.value);
         if (searchText == "") {
             this.showFriends();
         } else {
-            let searchPeople = [];
-            firebase.database().ref().child("users").orderByChild('name').startAt(searchText).endAt(searchText + "\uf8ff").on("value", snap => {
-                snap.forEach( data => {
-                    searchPeople.push(data.key)
-                    searchPeople.push(data.key)
+            //De ce trebuie sa setez state-ul sa fie gol inainte sa pun ceva in el?
+            this.setState({
+                friendsId: []
+            })
+            firebase.database().ref().child("users").orderByChild('name').startAt(searchText).endAt(searchText + "\uf8ff").once('value', snap => {
+                let searchPeople = [];
+                snap.forEach(data => {
                     searchPeople.push(data.key)
                 });
-                this.setState({
-                    friendsId: searchPeople
-                })
+                this.handleSearch(searchPeople);
             })
         }
+    }
+
+    handleSearch(arr) {
+        this.setState({
+            friendsId: arr
+        })
     }
 
     render() {
@@ -112,6 +121,7 @@ export class FriendsComponent extends Component {
                 <input onKeyUp={this.search} placeholder="Search for friends" type="search" />
                 <div>
                     {
+
                         this.state.friendsId.map((ids) => {
                             return (
                                 <FriendContent friendId={ids} removeFriend={this.removeFriend} addFriend={this.addFriend} />
