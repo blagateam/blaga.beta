@@ -17,16 +17,16 @@ export class CatalogComponent extends Component {
 	            	<div className="PartNote">
 	            		<div className="HeaderNota">
 	            			<div className="P_Data">
-	            				<p>Data</p>
+	            				<p>Dates</p>
 	            			</div>
 	            			<div className="P_Tipul">
-	            				<p>Tipul</p>
+	            				<p>Type</p>
 	            			</div>
 	            			<div className="P_Nota">
-	            				<p>Nota</p>
+	            				<p>Grade</p>
 	            			</div>
 	            			<div className="P_Poza">
-	            				<p>Poza</p>
+	            				<p>Picture</p>
 	            			</div>
 	            		</div>
 	            		<CatalogNote />
@@ -36,7 +36,7 @@ export class CatalogComponent extends Component {
 	            	</div>
 	            	<div className="PartAbsente">
 	            		<div className="HeaderAbsente">
-	            			<p>Absente</p>
+	            			<p>Absence</p>
 	            		</div>
 	            		<CatalogAbsente />
 	            		<CatalogAbsente />

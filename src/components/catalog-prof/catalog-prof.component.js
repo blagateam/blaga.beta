@@ -8,16 +8,16 @@ export class CatalogProf extends Component {
         return (
             <div className="catalog-prof">
                		<select className="TipElev">
-               			<option className="Elev">elev1</option>
-               			<option className="Elev">elev2</option>
-               			<option className="Elev">elev3</option>
-               			<option className="Elev">elev4</option>
+               			<option className="Elev">Student1</option>
+               			<option className="Elev">Student2</option>
+               			<option className="Elev">Student3</option>
+               			<option className="Elev">Student4</option>
                		</select>
             		<select className="TipDetalii">
-            			<option className="Tip">test</option>
-            			<option className="Tip">teza</option>
-            			<option className="Tip">proiect</option>
-            			<option className="Tip">absenta</option>
+            			<option className="Tip">Test</option>
+            			<option className="Tip">Semester Test</option>
+            			<option className="Tip">Project</option>
+            			<option className="Tip">Absence</option>
             		</select>
             		<select className="SelectieNota">
             			<option className="Notele">10</option>

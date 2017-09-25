@@ -43,24 +43,21 @@ export class CatalogHeader extends Component {
                 <button onClick={this.moveLeftCatalog}>&#60;</button>
                 <div className="slider">
                     <div className="track">
-                        <button>Romana</button>
-                        <button>Matematica</button>
-                        <button>Informatica</button>
-                        <button>Engleza</button>
-                        <button>Franceza</button>
-                        <button>Chimie</button>
-                        <button>Geografie</button>
-                        <button>Istorie</button>
-                        <button>Desen</button>
-                        <button>Muzica</button>
+                        <button>Romanian</button>
+                        <button>Mathematics</button>
+                        <button>Informatics</button>
+                        <button>English</button>
+                        <button>French</button>
+                        <button>Chemistry</button>
+                        <button>Geography</button>
+                        <button>History</button>
+                        <button>Art</button>
+                        <button>Music</button>
                         <button>Sport</button>
                         <button>TIC</button>
-                        <button>Romana</button>
-                        <button>Matematica</button>
-                        <button>Informatica</button>
-                        <button>Engleza</button>
-                        <button>TIC</button>
-                        <button>Romana</button>
+                        <button>Biology</button>
+                        <button>Religion</button>
+                        <button>Physics</button>
                     </div>
                 </div>
                 <button onClick={this.moveRightCatalog}>&#62;</button>
