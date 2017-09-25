@@ -36,8 +36,11 @@
             font-size: 18px;
             position: absolute;
             right: 5px;
-            top: 18px;
-            
+            top: 18px; 
+
+            button{
+                cursor: pointer;
+            }
         }
     }
 }

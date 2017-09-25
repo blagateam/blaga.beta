@@ -91,11 +91,13 @@ export class FriendsComponent extends Component {
 
     search(event) {
         let searchText = event.target.value.toLowerCase();
-        //console.log(event.target.value);
         if (searchText == "") {
-            this.showFriends();
+            //Not working proper
+             this.setState({
+                friendsId: []
+             })
+             this.showFriends();
         } else {
-            //De ce trebuie sa setez state-ul sa fie gol inainte sa pun ceva in el?
             this.setState({
                 friendsId: []
             })
