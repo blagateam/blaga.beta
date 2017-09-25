@@ -137,7 +137,7 @@ export class TimelineComponent extends Component {
                 <div className="Preview">
                     <div className="About_preview">
                         <p className="Descriere">{this.state.about}</p>
-                        <input className = "homeInput" ref={(e) => this.refs.about = e} type="text" placeholder="Ceva despre tine..."></input>
+                        <input className = "homeInput" ref={(e) => this.refs.about = e} type="text" placeholder="Something about you..."></input>
                     </div>
                     <div className="Friends_preview">
                         <div className="images">
@@ -164,11 +164,11 @@ export class TimelineComponent extends Component {
                 </div>
 
                 <div className="NotesTOP">
-                    <p className="NotesHeader">Notite</p>
+                    <p className="NotesHeader">Notes</p>
                 </div>
                 <div className="Notes">
-                    <button onClick={this.adaugaNotita} className="AddNotes" >Adauga notita</button>
-                    <input className="noteInput" type="text"  placeholder="Notita ta..." maxlength="150" ref={(el) => this.refs.note = el}></input>
+                    <button onClick={this.adaugaNotita} className="AddNotes" >Add note</button>
+                    <input className="noteInput" type="text"  placeholder="Your note..." maxlength="150" ref={(el) => this.refs.note = el}></input>
                 </div>
                 <div className="MoveSticky">
                 <button onClick={this.moveLeft} className="buttonLeft">&#10096;</button>
