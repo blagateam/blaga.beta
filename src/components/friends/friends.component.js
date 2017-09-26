@@ -9,14 +9,12 @@ export class FriendsComponent extends Component {
         super();
 
         this.state = {
-            friendsId: [],
+            friendsId: []
         };
 
         this.search = this.search.bind(this);
         this.showFriends = this.showFriends.bind(this);
         this.removeFriend = this.removeFriend.bind(this);
-        this.handleSearch = this.handleSearch.bind(this);
-
     }
 
     componentWillUpdate() {
@@ -30,9 +28,10 @@ export class FriendsComponent extends Component {
 
         user = firebase.auth().currentUser;
         userID = user.uid;
-
+      
         let ref = database.ref("users/" + userID + "/friends");
         let dbFriends = [];
+        
         ref.once('value', snap=>{
             let val= snap.val();
             let keys=Object.keys(val)
@@ -77,7 +76,6 @@ export class FriendsComponent extends Component {
        
     }
 
-    //Resolve the add friend
     addFriend(id) {
         let database = firebase.database();
         let user;
@@ -86,17 +84,18 @@ export class FriendsComponent extends Component {
         user = firebase.auth().currentUser;
         userID = user.uid;
 
-        let ref = database.ref("users/" + userID + "/friends").push(id)
+        let ref = database.ref("users/" + userID + "/friends").push(id);
     }
 
     search(event) {
         let searchText = event.target.value.toLowerCase();
         if (searchText == "") {
-            //Not working proper
-             this.setState({
-                friendsId: []
-             })
-             this.showFriends();
+            this.setState({
+                friendsId:[]
+            })
+            setTimeout(()=>{
+                this.showFriends();
+            },1)
         } else {
             this.setState({
                 friendsId: []
@@ -106,15 +105,11 @@ export class FriendsComponent extends Component {
                 snap.forEach(data => {
                     searchPeople.push(data.key)
                 });
-                this.handleSearch(searchPeople);
+                this.setState({
+                    friendsId: searchPeople
+                })
             })
         }
-    }
-
-    handleSearch(arr) {
-        this.setState({
-            friendsId: arr
-        })
     }
 
     render() {
@@ -123,8 +118,7 @@ export class FriendsComponent extends Component {
                 <input onKeyUp={this.search} placeholder="Search for friends" type="search" />
                 <div>
                     {
-
-                        this.state.friendsId.map((ids) => {
+                        this.state.friendsId.map( (ids) => {
                             return (
                                 <FriendContent friendId={ids} removeFriend={this.removeFriend} addFriend={this.addFriend} />
                             )
