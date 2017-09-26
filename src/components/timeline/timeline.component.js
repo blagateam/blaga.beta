@@ -13,6 +13,8 @@ export class TimelineComponent extends Component {
         this.addAbout = this.addAbout.bind(this);
         this.moveLeft = this.moveLeft.bind(this);
         this.moveRight = this.moveRight.bind(this);
+        this.deleteNote = this.deleteNote.bind(this);
+
 
         this.state = {
             notesArray: []
@@ -34,12 +36,33 @@ export class TimelineComponent extends Component {
             })
 
             oldNotes.push(note);
-            
+
             this.setState({
                 notesArray: oldNotes
             })
 
         }
+    }
+
+    deleteNote(noteText) {
+        let user = firebase.auth().currentUser;
+        let userID = user.uid;
+        let oldNotes = this.state.notesArray;
+
+        this.database = firebase.database().ref('users/' + userID + '/notes').orderByChild("note").equalTo(noteText);
+        this.database.once('value', snap => {
+            for (let obj in snap.val()) {
+                console.log(obj)
+                firebase.database().ref('users/' + userID + '/notes/' + obj).remove();
+            }
+        })
+
+        let index = oldNotes.findIndex(x => x == noteText);
+        oldNotes.splice(index, 1);
+
+        this.setState({
+            notesArray: oldNotes
+        })
     }
 
     componentWillUpdate() {
@@ -78,7 +101,7 @@ export class TimelineComponent extends Component {
             }
 
             this.setState({
-                notesArray:array
+                notesArray: array
             })
             //a se lucra in acest scope pt ca nu mere altundeva
         })
@@ -190,7 +213,7 @@ export class TimelineComponent extends Component {
                         <div className="Track">
                             {
                                 this.state.notesArray.map(content => {
-                                    return (<NotesContent noteText={content} />
+                                    return (<NotesContent noteText={content} deleteNote={this.deleteNote} />
                                     )
                                 }
                                 )}

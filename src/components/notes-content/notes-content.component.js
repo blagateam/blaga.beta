@@ -8,6 +8,10 @@ export class NotesContent extends Component {
         super(...args);
     }
 
+    del(){
+        this.props.deleteNote(this.props.noteText);
+    }
+
     render() {
         return (
             <div className="notes-content-component">
@@ -17,7 +21,7 @@ export class NotesContent extends Component {
                     </div>
                     <div className="TopButtons">
                         <button className="MaximizeButton">&#10066;</button>
-                        <button className="CloseButton">&#10006;</button>
+                        <button className="CloseButton" onClick={()=>{this.del()}}>&#10006;</button>
                     </div>
                 </div>
                 <div className="NotesText">
