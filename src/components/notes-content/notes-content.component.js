@@ -20,7 +20,6 @@ export class NotesContent extends Component {
                         <h3>{this.props.title}</h3>
                     </div>
                     <div className="TopButtons">
-                        <button className="MaximizeButton">&#10066;</button>
                         <button className="CloseButton" onClick={()=>{this.del()}}>&#10006;</button>
                     </div>
                 </div>
