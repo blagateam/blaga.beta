@@ -11,11 +11,13 @@ import { FriendsComponent } from '../../components/friends/friends.component';
 
 export class HomePage extends Component {
     render() {
+        console.log('HomePage', this.props);
         return (
             <div className="container home-page">
                 <Header />
                 <div className="content">
                     <ProfileComponent user={this.props.user} />
+
                     <FriendsComponent />
                     <ChatSidebar />
                 </div>
