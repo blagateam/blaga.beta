@@ -15,6 +15,7 @@ export class Header extends Component {
                     <div className="logo">
                         betabook
                     </div>
+                    <img className="header-logo" src="../../../assets/logo.png" />
                 </div>
                 <div className="search-wrapper">
                     <input className="search" type="text" placeholder="Type your search here" />
