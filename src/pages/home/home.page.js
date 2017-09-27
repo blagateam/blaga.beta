@@ -6,6 +6,8 @@ import { Header } from '../../components/header/header.component';
 import { ProfileComponent } from '../../components/profile/profile.component';
 import { TimelineComponent } from '../../components/timeline/timeline.component';
 import { ChatSidebar } from '../../components/chat-sidebar/chat-sidebar.component';
+import { FriendsComponent } from '../../components/friends/friends.component';
+
 
 export class HomePage extends Component {
     render() {
@@ -15,7 +17,8 @@ export class HomePage extends Component {
                 <Header />
                 <div className="content">
                     <ProfileComponent user={this.props.user} />
-                    <TimelineComponent user={this.props.user} />
+
+                    <FriendsComponent />
                     <ChatSidebar />
                 </div>
             </div>
