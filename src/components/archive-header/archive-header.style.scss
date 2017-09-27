@@ -1,9 +1,16 @@
 .slider-wrap {
     display: flex;
     flex-direction: row;
+
+
     .slider {
+        display: flex;
+        flex-basis: auto;
+        flex-grow: 1;
+        flex-wrap: wrap;
         overflow: hidden;
-        width: 900px;
+        min-width: 200px;
+        max-width: 836px;
         .track {
             display: flex;
             flex-direction: row;
