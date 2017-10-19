@@ -23,26 +23,28 @@ export class HomePage extends Component {
     }
 
     showSelected(s){
-        if(s == 'Archive'){
-            this.setState({
-                timeline:false,
-                archive:true,
-                friends:false
-            })
-        }else
-        if(s == 'Timeline'){
-            this.setState({
-                timeline:true,
-                archive:false,
-                friends:false
-            })
-        }
-        else  if(s == 'Friends'){
-            this.setState({
-                timeline:false,
-                archive:false,
-                friends:true
-            })
+        switch(s){
+            case 'Friends':
+                this.setState({
+                    timeline:false,
+                    archive:false,
+                    friends:true
+                })
+                break;
+            case 'Timeline':
+                this.setState({
+                    timeline:true,
+                    archive:false,
+                    friends:false
+                })
+                break;    
+            case 'Archive':
+                this.setState({
+                    timeline:false,
+                    archive:true,
+                    friends:false
+                })
+                break;
         }
     }
 
