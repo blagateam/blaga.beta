@@ -2,6 +2,8 @@
 import { Component, h } from 'preact';
 import './catalog-note.style.scss';
 
+import { CatalogColoana } from '../catalog-coloana/catalog-coloana.component'
+
 export class CatalogNote extends Component {
 
 	constructor() {
@@ -44,24 +46,9 @@ export class CatalogNote extends Component {
 						<h3>Data</h3>
 						<h3>Poza</h3>
 					</div>
-					<div className="table-text">
-						<h3>10</h3>
-						<h3>Test</h3>
-						<h3>10/10/2017</h3>
-						<h3>None</h3>
-					</div>
-					<div className="table-text">
-						<h3>10</h3>
-						<h3>Test</h3>
-						<h3>10/10/2017</h3>
-						<h3>None</h3>
-					</div>
-					<div className="table-text">
-						<h3>10</h3>
-						<h3>Test</h3>
-						<h3>10/10/2017</h3>
-						<h3>None</h3>
-					</div>
+					{this.state.coloanaArray.map(content =>{
+						return(<CatalogColoana coloana={content} />)
+					})}
 				</div>
 			</div>
 		)
