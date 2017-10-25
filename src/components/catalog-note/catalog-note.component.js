@@ -10,7 +10,7 @@ export class CatalogNote extends Component {
 		super();
 
 		this.state = {
-			coloanaArray: []
+			coloanaNota: []
 		}
 	}
 
@@ -31,7 +31,7 @@ export class CatalogNote extends Component {
 			}
 
 			this.setState({
-				coloanaArray: coloana
+				coloanaNota: coloana
 			})
 		})
 	}
@@ -46,7 +46,7 @@ export class CatalogNote extends Component {
 						<h3>Data</h3>
 						<h3>Poza</h3>
 					</div>
-					{this.state.coloanaArray.map(content =>{
+					{this.state.coloanaNota.map(content =>{
 						return(<CatalogColoana coloana={content} />)
 					})}
 				</div>

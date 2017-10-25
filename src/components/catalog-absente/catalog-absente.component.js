@@ -4,6 +4,36 @@ import './catalog-absente.style.scss';
 
 export class CatalogAbsente extends Component {
 
+	constructor() {
+		super();
+
+		this.state = {
+			coloanaAbsenta: []
+		}
+	}
+
+	componentWillUpdate() {
+		let database = firebase.database();
+		let user = firebase.auth().currentUser;
+		let userID = user.uid;
+		let refAbsente = database.ref("users/" + userID + "/absente");
+		var coloana = [];
+
+		refAbsente.on('value', snapshot => {
+			let variable = snapshot.val();
+			let keys = Object.keys(variable);
+
+			for(let i = 0; i < keys.length; i++){
+				let key = keys[i];
+				coloana.push(variable[key]);
+			}
+
+			this.setState({
+				coloanaAbsenta: coloana
+			})
+		})
+	}
+
 	render() {
 		return (
 			<div className="catalog-absente">
@@ -12,18 +42,9 @@ export class CatalogAbsente extends Component {
 						<h3>Data</h3>
 						<h3>Tip</h3>
 					</div>
-					<div className="table-text">
-						<h3>12/11/2017</h3>
-						<h3>Intarziere</h3>
-					</div>
-					<div className="table-text">
-						<h3>15/10/2017</h3>
-						<h3>Nemotivata</h3>
-					</div>
-					<div className="table-text">
-						<h3>12/11/2017</h3>
-						<h3>Motivata</h3>
-					</div>
+					{this.state.coloanaAbsenta.map(content =>{
+						return(<CatalogColoana coloana={content} />)
+					})}
 				</div>
 			</div>
 		)
