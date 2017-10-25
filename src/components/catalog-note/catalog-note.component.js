@@ -4,6 +4,36 @@ import './catalog-note.style.scss';
 
 export class CatalogNote extends Component {
 
+	constructor() {
+		super();
+
+		this.state = {
+			coloanaArray: []
+		}
+	}
+
+	componentWillUpdate() {
+		let database = firebase.database();
+		let user = firebase.auth().currentUser;
+		let userID = user.uid;
+		let refMarks = database.ref("users/" + userID + "/marks");
+		var coloana = [];
+
+		refMarks.on('value', snapshot => {
+			let variable = snapshot.val();
+			let keys = Object.keys(variable);
+
+			for(let i = 0; i < keys.length; i++){
+				let key = keys[i];
+				coloana.push(variable[key]);
+			}
+
+			this.setState({
+				coloanaArray: coloana
+			})
+		})
+	}
+
 	render() {
 		return (
 			<div className="catalog-note">
