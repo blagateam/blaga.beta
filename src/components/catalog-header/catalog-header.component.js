@@ -9,7 +9,7 @@ export class CatalogHeader extends Component {
 
         this.moveLeftCatalog = this.moveLeftCatalog.bind(this);
         this.moveRightCatalog = this.moveRightCatalog.bind(this);
-
+        this.handleClick = this.handleClick.bind(this);
         this.index = 0;
        
     }
@@ -20,6 +20,9 @@ export class CatalogHeader extends Component {
         console.log(this.numberOfElements);
     }
     
+    handleClick(e){
+        this.props.changeMat(e.target.innerHTML);
+    }
 
     moveRightCatalog() {
         if (this.index < this.numberOfElements) {
@@ -43,21 +46,21 @@ export class CatalogHeader extends Component {
                 <button onClick={this.moveLeftCatalog}>&#60;</button>
                 <div className="slider">
                     <div className="track">
-                        <button>Romanian</button>
-                        <button>Mathematics</button>
-                        <button>Informatics</button>
-                        <button>English</button>
-                        <button>French</button>
-                        <button>Chemistry</button>
-                        <button>Geography</button>
-                        <button>History</button>
-                        <button>Art</button>
-                        <button>Music</button>
-                        <button>Sport</button>
-                        <button>TIC</button>
-                        <button>Biology</button>
-                        <button>Religion</button>
-                        <button>Physics</button>
+                        <button onClick={this.handleClick}>Romana</button>
+                        <button onClick={this.handleClick}>Matematica</button>
+                        <button onClick={this.handleClick}>Informatica</button>
+                        <button onClick={this.handleClick}>Engleza</button>
+                        <button onClick={this.handleClick}>Franceza</button>
+                        <button onClick={this.handleClick}>Chimie</button>
+                        <button onClick={this.handleClick}>Geografie</button>
+                        <button onClick={this.handleClick}>Istorie</button>
+                        <button onClick={this.handleClick}>Desen</button>
+                        <button onClick={this.handleClick}>Muzica</button>
+                        <button onClick={this.handleClick}>Sport</button>
+                        <button onClick={this.handleClick}>TIC</button>
+                        <button onClick={this.handleClick}>Biologie</button>
+                        <button onClick={this.handleClick}>Religie</button>
+                        <button onClick={this.handleClick}>Fizica</button>
                     </div>
                 </div>
                 <button onClick={this.moveRightCatalog}>&#62;</button>
