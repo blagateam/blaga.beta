@@ -1,0 +1,14 @@
+.catalog-coloana-absenta{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    
+            h3{
+                border: 1px solid black;
+                margin: 0;
+                font-size: 30px;
+                text-align: center;
+                padding: 40px;
+                background-color: #FFE547;
+            }
+}

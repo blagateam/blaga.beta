@@ -2,6 +2,8 @@
 import { Component, h } from 'preact';
 import './catalog-absente.style.scss';
 
+import { CatalogColoanaAbsenta } from '../catalog-coloana-absenta/catalog-coloana-absenta.component'
+
 export class CatalogAbsente extends Component {
 
 	constructor() {
@@ -43,7 +45,7 @@ export class CatalogAbsente extends Component {
 						<h3>Tip</h3>
 					</div>
 					{this.state.coloanaAbsenta.map(content =>{
-						return(<CatalogColoana coloana={content} />)
+						return(<CatalogColoanaAbsenta coloana={content} />)
 					})}
 				</div>
 			</div>
