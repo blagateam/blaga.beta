@@ -3,6 +3,7 @@ import { Component, h } from 'preact';
 import './catalog-absente.style.scss';
 
 import { CatalogColoanaAbsenta } from '../catalog-coloana-absenta/catalog-coloana-absenta.component'
+import { CatalogProfAbsenta } from '../catalog-prof-absenta/catalog-prof-absenta.component'
 
 export class CatalogAbsente extends Component {
 
@@ -10,8 +11,11 @@ export class CatalogAbsente extends Component {
 		super();
 
 		this.state = {
-			coloanaAbsenta: []
+			coloanaAbsenta: [],
+			showFormAbs: false
 		}
+
+		this.showFormAbsenta = this.showFormAbsenta.bind(this);
 	}
 
 	componentWillUpdate() {
@@ -25,7 +29,7 @@ export class CatalogAbsente extends Component {
 			let variable = snapshot.val();
 			let keys = Object.keys(variable);
 
-			for(let i = 0; i < keys.length; i++){
+			for (let i = 0; i < keys.length; i++) {
 				let key = keys[i];
 				coloana.push(variable[key]);
 			}
@@ -36,17 +40,28 @@ export class CatalogAbsente extends Component {
 		})
 	}
 
+	showFormAbsenta() {
+		let x = !this.state.showFormAbs;
+		this.setState({
+			showFormAbs: x
+		})
+	}
+
 	render() {
 		return (
 			<div className="catalog-absente">
-				<div className="table-absente">
-					<div className="table-head">
-						<h3>Data</h3>
-						<h3>Tip</h3>
+				<div className="container">
+				<button className="showAbsBtn" onClick={this.showFormAbsenta}>+</button>
+					{this.state.showFormAbs ? <CatalogProfAbsenta /> : null}
+					<div className="table-absente">
+						<div className="table-head">
+							<h3>Data</h3>
+							<h3>Tip</h3>
+						</div>
+						{this.state.coloanaAbsenta.map(content => {
+							return (<CatalogColoanaAbsenta coloana={content} />)
+						})}
 					</div>
-					{this.state.coloanaAbsenta.map(content =>{
-						return(<CatalogColoanaAbsenta coloana={content} />)
-					})}
 				</div>
 			</div>
 		)

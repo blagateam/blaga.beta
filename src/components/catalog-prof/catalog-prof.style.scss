@@ -1,20 +1,24 @@
-.catalog-prof {
+.catalog-prof{
 	display: flex;
 	flex-direction: row;
-	margin-top: 3px;
 	width: 100%;
+	justify-content: center;
+	align-items: center;
 
-	.TipElev, .TipDetalii, .SelectieNota, .Bday {
-		display: flex;
-		flex: 1;
+	input,select{
+		width:163px;
+		height: 25px;
 	}
 
-	.Attachment {
-		display: flex;
+	input[type="number"]{
+		width:50px;
 	}
 
-	.ADD {
-		background-color: #444;
-		color: #f9f9f9;
+	input[type="date"]{
+		width:120px;
+	}
+
+	select{
+		width: 60px;
 	}
 }

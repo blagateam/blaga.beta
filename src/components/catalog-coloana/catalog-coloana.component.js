@@ -12,8 +12,8 @@ export class CatalogColoana extends Component {
 		return (
 			<div className="catalog-coloana">
 				<h3>{this.props.coloana.nota}</h3>
+				<h3>{this.props.coloana.tip}</h3>
                 <h3>{this.props.coloana.data}</h3>
-                <h3>{this.props.coloana.tip}</h3>
                 <h3>None</h3>
 			</div>
 		)
