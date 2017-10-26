@@ -1,0 +1,34 @@
+.slider-wrap-catalog {
+    display: flex;
+    flex-direction: row;
+    background-color: #575757;
+	    .slider {
+	        overflow: hidden;
+	        width: 900px;
+	        width: 20px;
+	          flex-grow: 1;
+	          flex-shrink: 1;
+	          flex-basis: auto;
+
+	          -webkit-flex-grow: 1;
+	          -webkit-flex-shrink: 1;
+	        .track {
+	            display: flex;
+	            flex-direction: row;
+	            flex: 1;
+	            width: 100%;
+	            transform: translateX( 0px);
+
+	            button {
+	            	display: flex;
+	                min-width: 100px;
+	                margin: 0;
+	                font-size: 15px;
+	                cursor: pointer;
+	            }
+	            button:hover{
+	                background-color: grey;
+	            }
+	        }
+	    }
+}

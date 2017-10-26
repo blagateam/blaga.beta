@@ -1,0 +1,51 @@
+.catalog-note {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+
+	.showBtn{
+		position: absolute;
+		right:0;
+		top: 0;
+		background-color: #01D169;
+		color:black;
+		font-size: 20px;
+		font-weight: bold;
+		width: 40px;
+	}
+	.container {
+		display: flex;
+		flex-direction: column;
+		
+		.table {
+				margin: 0 auto;
+				display: flex;
+				height: auto;
+				padding-top: 100px;
+				overflow: auto;
+				h3 {
+					border: 1px solid black;
+					margin: 0;
+					font-size: 30px;
+					text-align: center;
+					padding: 40px;
+				}
+			.grades {
+				display: flex;
+				height: auto;
+				width: 700px;
+				flex-direction: row;
+
+				.table-head {
+					flex-direction: column;
+					h3 {
+						background: #fff;
+					}
+				}
+			}
+		}
+	}
+}

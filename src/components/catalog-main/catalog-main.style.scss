@@ -1,0 +1,41 @@
+.catalog-main {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    background-color: #FFFFFF;
+
+    .options {    
+        display: flex;
+        flex-direction: row;
+        
+        h1 {
+            margin:0 0 0 5px;
+            width:250px;
+            text-align: center;
+        }
+
+        .note,.absente{
+            margin:0;
+            border-radius: 0;
+            width: 100px;
+            font-size: 15px;
+            border: 0;
+            cursor: pointer;
+        }
+
+        .note{
+            margin-left:10px;
+            background-color: #2196f3;
+        }
+
+        .absente{
+            background-color: #ff3a3a;
+        }
+    }
+
+    .table-main{
+        background-color: #2196f3;
+        height: 100%;
+    }
+}

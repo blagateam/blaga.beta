@@ -6,6 +6,7 @@ import { Header } from '../../components/header/header.component';
 import { ProfileComponent } from '../../components/profile/profile.component';
 import { TimelineComponent } from '../../components/timeline/timeline.component';
 import { ChatSidebar } from '../../components/chat-sidebar/chat-sidebar.component';
+
 import { FriendsComponent } from '../../components/friends/friends.component';
 
 

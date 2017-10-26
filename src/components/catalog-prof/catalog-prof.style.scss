@@ -1,0 +1,24 @@
+.catalog-prof{
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+
+	input,select{
+		width:163px;
+		height: 25px;
+	}
+
+	input[type="number"]{
+		width:50px;
+	}
+
+	input[type="date"]{
+		width:120px;
+	}
+
+	select{
+		width: 60px;
+	}
+}

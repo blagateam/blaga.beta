@@ -1,0 +1,19 @@
+.catalog-prof{
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+
+	input,select{
+		height: 25px;
+	}
+
+	input[type="date"]{
+		width:120px;
+	}
+
+	.absTypes{
+		width: 100px;
+	}
+}
