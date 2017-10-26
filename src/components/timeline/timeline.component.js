@@ -1,5 +1,5 @@
 // Import framework specific functions
-import {Component, h} from 'preact';
+import { Component, h } from 'preact';
 import './timeline.style.scss';
 
 import { NotesContent } from '../notes-content/notes-content.component';
@@ -10,126 +10,219 @@ export class TimelineComponent extends Component {
         super(...args);
 
         this.adaugaNotita = this.adaugaNotita.bind(this);
-        
-        this.refs = {};
-
+        this.addAbout = this.addAbout.bind(this);
         this.moveLeft = this.moveLeft.bind(this);
         this.moveRight = this.moveRight.bind(this);
+        this.deleteNote = this.deleteNote.bind(this);
 
+
+        this.state = {
+            notesArray: []
+        };
+        this.refs = {};
         this.index = 0;
     }
 
     adaugaNotita() {
-        let database = firebase.database();
-        let note = this.refs.note.value;
+        if (this.refs.note.value != '') {
+            let database = firebase.database();
+            let note = this.refs.note.value;
+            let user = firebase.auth().currentUser;
+            let userID = user.uid;
+            let oldNotes = this.state.notesArray;
+
+            database.ref('users/' + userID + '/notes').push().set({
+                note: note
+            })
+
+            oldNotes.push(note);
+
+            this.setState({
+                notesArray: oldNotes
+            })
+
+        }
+    }
+
+    deleteNote(noteText) {
         let user = firebase.auth().currentUser;
         let userID = user.uid;
+        let oldNotes = this.state.notesArray;
 
-        database.ref('users/' + userID + '/notes').push().set({
-            note: note
+        this.database = firebase.database().ref('users/' + userID + '/notes').orderByChild("note").equalTo(noteText);
+        this.database.once('value', snap => {
+            for (let obj in snap.val()) {
+                console.log(obj)
+                firebase.database().ref('users/' + userID + '/notes/' + obj).remove();
+            }
+        })
+
+        let index = oldNotes.findIndex(x => x == noteText);
+        oldNotes.splice(index, 1);
+
+        this.setState({
+            notesArray: oldNotes
         })
     }
 
-    componentDidMount(){
-        let Track = document.querySelector( ".Track" );
-        this.maxStickys = (Track.querySelectorAll( ".notes-content-component" ).length-3)/2;
-        console.log( this.maxStickys)
+    componentWillUpdate() {
+        let database = firebase.database();
+        let user;
+        let userID;
+        let textArray = this.state.notesArray;
+        let array = [];
+        var variable;
+
+        user = firebase.auth().currentUser;
+        userID = user.uid;
+
+        let refAbout = database.ref("users/" + userID + "/about");
+        let refMarks = database.ref("users/" + userID + "/lastmarks");
+
+        refAbout.on('value', function (snapshot) {
+            document.querySelector(".Descriere").innerHTML = snapshot.val().about;
+        })
+
+        refMarks.on('value', function (snapshot) {
+            document.querySelector(".nota1").innerHTML = snapshot.val().nota4;
+            document.querySelector(".nota2").innerHTML = snapshot.val().nota3;
+            document.querySelector(".nota3").innerHTML = snapshot.val().nota2;
+            document.querySelector(".nota4").innerHTML = snapshot.val().nota1;
+        })
+
+        database.ref('users/' + userID + '/notes').on('value', snap => {
+            variable = snap.val();
+
+            var keys = Object.keys(variable);
+            for (var i = 0; i < keys.length; i++) {
+                var key = keys[i];
+                // Look at each fruit object!
+                array.push(variable[key].note);
+            }
+
+            this.setState({
+                notesArray: array
+            })
+            //a se lucra in acest scope pt ca nu mere altundeva
+        })
+
     }
 
-    moveLeft(){
-        if(this.index >= 1)  {
-            let Track = document.querySelector( ".Track" );
+    componentDidMount() {
+        let Track = document.querySelector(".Track");
+        this.maxStickys = (Track.querySelectorAll(".notes-content-component").length - 3) / 2;
+    }
+
+    moveLeft() {
+        if (this.index >= 1) {
+            let Track = document.querySelector(".Track");
             this.index--;
-            Track.style.transform = "translateX( -" + ( this.index * 480 ) + "px )"; 
+            Track.style.transform = "translateX( -" + (this.index * 480) + "px )";
         }
     }
 
-   moveRight(){
-    
-        if(this.index < (this.maxStickys)) { 
-        let Track = document.querySelector( ".Track" );
-        this.index++;
-        Track.style.transform = "translateX( -" + ( this.index * 480 ) + "px )";   
+    moveRight() {
+
+        if (this.index < (this.maxStickys)) {
+            let Track = document.querySelector(".Track");
+            this.index++;
+            Track.style.transform = "translateX( -" + (this.index * 480) + "px )";
         }
     }
 
-    AddElements(){
-        const input = document.querySelector("noteInput");
-        const textMessage = input.value;
-
-          messageContentEl.appendChild( messageText );
-
+    showInput() {
+        document.querySelector(".homeInput").style.display = "inline-block";
+        document.querySelector(".addDescriere").style.display = "none";
+        document.querySelector(".Descriere").style.display = "none";
+        document.querySelector(".doneDescriere").style.display = "inline-block";
     }
 
+    addAbout() {
+        let database = firebase.database();
+        let user = firebase.auth().currentUser;
+        let userID = user.uid;
+        let about = this.refs.about.value;
 
+        document.querySelector(".homeInput").style.display = "none";
+        document.querySelector(".addDescriere").style.display = "inline-block";
+        document.querySelector(".Descriere").style.display = "inline-block";
+        document.querySelector(".doneDescriere").style.display = "none";
+
+        database.ref("users/" + userID + "/about").set({
+            about: about
+        })
+
+        this.setState({ about: about });
+    }
 
     render() {
         return (
             <div className="timeline-component">
                 <div className="main_buttons">
-                    <div className="topHeaders1"> 
-                        <p className="Headers">About</p> 
-                        <button className="addDescriere">&#9998;</button> 
+                    <div className="topHeaders1">
+                        <p className="Headers">About</p>
+                        <button className="addDescriere" onClick={this.showInput}>&#9998;</button>
+                        <button className="doneDescriere" onClick={this.addAbout}>&#x2714;</button>
                     </div>
-                    <div className="topHeaders2"> 
+                    <div className="topHeaders2">
                         <p className="Headers">Friends</p>
-                        </div>
-                    <div className="topHeaders3"> 
+                    </div>
+                    <div className="topHeaders3">
                         <p className="Headers">Carnet</p> </div>
                 </div>
 
                 <div className="Preview">
                     <div className="About_preview">
-                        <p className="Descriere">Descriere</p>
+                        <p className="Descriere">{this.state.about}</p>
+                        <input className="homeInput" ref={(e) => this.refs.about = e} type="text" placeholder="Something about you..."></input>
                     </div>
                     <div className="Friends_preview">
                         <div className="images">
-                            <img src="https://api.adorable.io/avatars/2" alt=""/>
-                            <img src="https://api.adorable.io/avatars/3" alt=""/>
-                            <img src="https://api.adorable.io/avatars/4" alt=""/>
-                            <img src="https://api.adorable.io/avatars/5" alt=""/>
+                            <img src="https://api.adorable.io/avatars/2" alt="" />
+                            <img src="https://api.adorable.io/avatars/3" alt="" />
+                            <img src="https://api.adorable.io/avatars/4" alt="" />
+                            <img src="https://api.adorable.io/avatars/5" alt="" />
                         </div>
                         <div className="images">
-                            <img src="https://api.adorable.io/avatars/1" alt=""/>
-                            <img src="https://api.adorable.io/avatars/4" alt=""/>
-                            <img src="https://api.adorable.io/avatars/5" alt=""/>
-                            <img src="https://api.adorable.io/avatars/6" alt=""/>
+                            <img src="https://api.adorable.io/avatars/1" alt="" />
+                            <img src="https://api.adorable.io/avatars/4" alt="" />
+                            <img src="https://api.adorable.io/avatars/5" alt="" />
+                            <img src="https://api.adorable.io/avatars/6" alt="" />
                         </div>
                     </div>
                     <div className="Carnet_preview">
                         <div className="Note">
-                            <p>Nota 1</p>
-                            <p>Nota 2</p>
-                            <p>Nota 3</p>
-                            <p>Nota 4</p>
+                            <p className="nota1"></p>
+                            <p className="nota2"></p>
+                            <p className="nota3"></p>
+                            <p className="nota4"></p>
                         </div>
                     </div>
                 </div>
 
                 <div className="NotesTOP">
-                    <p className="NotesHeader">Notite</p>
+                    <p className="NotesHeader">Notes</p>
                 </div>
                 <div className="Notes">
-                    <button onClick={this.AddElements} className="AddNotes" >Adauga notita</button>
-                    <input className="noteInput" type="text"  placeholder="Notita ta..." maxlength="150" ref={(el) => this.refs.note = el}></input>
+                    <button onClick={this.adaugaNotita} className="AddNotes" >Add note</button>
+                    <input className="noteInput" type="text" placeholder="Your note..." maxlength="150" ref={(el) => this.refs.note = el}></input>
                 </div>
                 <div className="MoveSticky">
-                <button onClick={this.moveLeft} className="buttonLeft">&#10096;</button>
+                    <button onClick={this.moveLeft} className="buttonLeft">&#10096;</button>
                     <div className="StickyNotes">
                         <div className="Track">
-                        <NotesContent user={this.props.user} />
-                        <NotesContent user={this.props.user} />
-                        <NotesContent user={this.props.user} />
-                        <NotesContent user={this.props.user} />
-                        <NotesContent user={this.props.user} />
-                        <NotesContent user={this.props.user} />
-                        <NotesContent user={this.props.user} />
-                        <NotesContent user={this.props.user} />
+                            {
+                                this.state.notesArray.map(content => {
+                                    return (<NotesContent noteText={content} deleteNote={this.deleteNote} />
+                                    )
+                                }
+                                )}
                         </div>
                     </div>
-                <button onClick={this.moveRight} className="buttonRight">&#10097;</button>
+                    <button onClick={this.moveRight} className="buttonRight">&#10097;</button>
                 </div>
             </div>
         )
     }
+
 }

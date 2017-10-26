@@ -56,22 +56,22 @@ export class LoginPage extends Component {
             <div className={classes.join(' ')}>
                 <div className="login-form">
                     <h1>
-                        Welcome to betabook!
+                        Betabook
                     </h1>
                     <p>
                         Please fill in your details to log-in
                     </p>
 
-                    {this.state.error && (
+                    <input disabled={loading} onkeydown={this._handleKeyLogin} type="text" placeholder="Your email" ref={(el) => this.refs.email = el} />
+                    <input disabled={loading} onkeydown={this._handleKeyLogin} type="password" placeholder="Your password" ref={(el) => this.refs.pass = el} />
+                    <button disabled={loading} onclick={this._handleLogin}>Login</button>
+                    <p className="pRegister">You don't have an account? <a href="/register">Register</a></p>
+                </div>
+                {this.state.error && (
                         <div className="error">
                             {this.state.error.message}
                         </div>
                     )}
-
-                    <input disabled={loading} onkeydown={this._handleKeyLogin} type="text" placeholder="Your email" ref={(el) => this.refs.email = el} />
-                    <input disabled={loading} onkeydown={this._handleKeyLogin} type="password" placeholder="Your password" ref={(el) => this.refs.pass = el} />
-                    <button disabled={loading} onclick={this._handleLogin}>Login</button>
-                </div>
             </div>
         )
     }

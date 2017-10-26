@@ -1,0 +1,30 @@
+.file{
+    background-color: #01D196;
+    display: flex;
+    border-radius:  5px;
+    padding: 0 30px;
+    margin: 10px 30px 0 0;
+    position: relative;
+    width: 200px;
+    height: 50px;
+
+    a{
+        margin: 14px auto;
+        text-decoration: none;
+        text-align: center;
+        color: #fff;
+        font-size: 18px;
+    }
+
+    button{
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        cursor: pointer;
+        width: 25px;
+        height: 25px; 
+        background-color: #FF2828; 
+        border-radius: 5px;
+    }
+}
