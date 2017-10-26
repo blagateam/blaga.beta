@@ -54,13 +54,15 @@ export class CatalogAbsente extends Component {
 				<button className="showAbsBtn" onClick={this.showFormAbsenta}>+</button>
 					{this.state.showFormAbs ? <CatalogProfAbsenta /> : null}
 					<div className="table-absente">
-						<div className="table-head">
-							<h3>Data</h3>
-							<h3>Tip</h3>
+						<div className="absente">
+							<div className="table-head">
+								<h3>Data</h3>
+								<h3>Tip</h3>
+							</div>
+							{this.state.coloanaAbsenta.map(content => {
+								return (<CatalogColoanaAbsenta coloana={content} />)
+							})}
 						</div>
-						{this.state.coloanaAbsenta.map(content => {
-							return (<CatalogColoanaAbsenta coloana={content} />)
-						})}
 					</div>
 				</div>
 			</div>

@@ -54,15 +54,17 @@ export class CatalogNote extends Component {
 				<div className="container">
 					{this.state.prof? <CatalogProf /> :null}
 					<div className="table">
-						<div className="table-head">
-							<h3>Nota</h3>
-							<h3>Tip</h3>
-							<h3>Data</h3>
-							<h3>Poza</h3>
+						<div className="grades">
+							<div className="table-head">
+								<h3>Nota</h3>
+								<h3>Tip</h3>
+								<h3>Data</h3>
+								<h3>Poza</h3>
+							</div>
+							{this.state.coloanaNota.map(content => {
+								return (<CatalogColoana coloana={content} />)
+							})}
 						</div>
-						{this.state.coloanaNota.map(content => {
-							return (<CatalogColoana coloana={content} />)
-						})}
 					</div>
 				</div>
 			</div>

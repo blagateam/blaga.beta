@@ -23,7 +23,8 @@
 			margin: 0 auto;
 			display: flex;
 			height: auto;
-			padding: 100px;
+			padding-top: 100px;
+			overflow: auto;
 			h3 {
 				border: 1px solid black;
 				margin: 0;
@@ -31,9 +32,17 @@
 				text-align: center;
 				padding: 40px;
 			}
-			.table-head {
-				h3 {
-					background: #fff;
+			.absente {
+				display: flex;
+				height: auto;
+				width: 700px;
+				flex-direction: row;
+
+				.table-head {
+					flex-direction: column;
+					h3 {
+						background: #fff;
+					}
 				}
 			}
 		}

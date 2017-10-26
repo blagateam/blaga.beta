@@ -21,20 +21,29 @@
 		flex-direction: column;
 		
 		.table {
-			margin: 0 auto;
-			display: flex;
-			height: auto;
-			padding: 100px;
-			h3 {
-				border: 1px solid black;
-				margin: 0;
-				font-size: 30px;
-				text-align: center;
-				padding: 40px;
-			}
-			.table-head {
+				margin: 0 auto;
+				display: flex;
+				height: auto;
+				padding-top: 100px;
+				overflow: auto;
 				h3 {
-					background: #fff;
+					border: 1px solid black;
+					margin: 0;
+					font-size: 30px;
+					text-align: center;
+					padding: 40px;
+				}
+			.grades {
+				display: flex;
+				height: auto;
+				width: 700px;
+				flex-direction: row;
+
+				.table-head {
+					flex-direction: column;
+					h3 {
+						background: #fff;
+					}
 				}
 			}
 		}
