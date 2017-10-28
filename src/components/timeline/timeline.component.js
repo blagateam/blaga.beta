@@ -160,12 +160,12 @@ export class TimelineComponent extends Component {
             <div className="timeline-component">
                 <div className="main_buttons">
                     <div className="topHeaders1">
-                        <p className="Headers">About</p>
+                        <p className="Headers">Despre</p>
                         <button className="addDescriere" onClick={this.showInput}>&#9998;</button>
                         <button className="doneDescriere" onClick={this.addAbout}>&#x2714;</button>
                     </div>
                     <div className="topHeaders2">
-                        <p className="Headers">Friends</p>
+                        <p className="Headers">Prieteni</p>
                     </div>
                     <div className="topHeaders3">
                         <p className="Headers">Carnet</p> </div>
@@ -192,20 +192,20 @@ export class TimelineComponent extends Component {
                     </div>
                     <div className="Carnet_preview">
                         <div className="Note">
-                            <p className="nota1"></p>
-                            <p className="nota2"></p>
-                            <p className="nota3"></p>
-                            <p className="nota4"></p>
+                            <p className="nota1">10 Romana</p>
+                            <p className="nota2">8 Engleza</p>
+                            <p className="nota3">9 Geografie</p>
+                            <p className="nota4">10 Matematica</p>
                         </div>
                     </div>
                 </div>
 
                 <div className="NotesTOP">
-                    <p className="NotesHeader">Notes</p>
+                    <p className="NotesHeader">Notite</p>
                 </div>
                 <div className="Notes">
-                    <button onClick={this.adaugaNotita} className="AddNotes" >Add note</button>
-                    <input className="noteInput" type="text" placeholder="Your note..." maxlength="150" ref={(el) => this.refs.note = el}></input>
+                    <button onClick={this.adaugaNotita} className="AddNotes" >Adauga notita</button>
+                    <input className="noteInput" type="text" placeholder="Nota ta..." maxlength="150" ref={(el) => this.refs.note = el}></input>
                 </div>
                 <div className="MoveSticky">
                     <button onClick={this.moveLeft} className="buttonLeft">&#10096;</button>

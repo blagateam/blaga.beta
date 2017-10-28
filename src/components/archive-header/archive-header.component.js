@@ -48,21 +48,21 @@ export class ArchiveHeader extends Component {
                 <button onClick={this.moveLeft}>&#60;</button>
                 <div className="slider">
                     <div className="track">
-                        <button onClick={this.handleClick}>Romanian</button>
-                        <button onClick={this.handleClick}>Mathematics</button>
-                        <button onClick={this.handleClick}>Informatics</button>
-                        <button onClick={this.handleClick}>English</button>
-                        <button onClick={this.handleClick}>French</button>
-                        <button onClick={this.handleClick}>Chemistry</button>
-                        <button onClick={this.handleClick}>Geography</button>
-                        <button onClick={this.handleClick}>History</button>
-                        <button onClick={this.handleClick}>Art</button>
-                        <button onClick={this.handleClick}>Music</button>
+                        <button onClick={this.handleClick}>Romana</button>
+                        <button onClick={this.handleClick}>Matematica</button>
+                        <button onClick={this.handleClick}>Informatica</button>
+                        <button onClick={this.handleClick}>Engleza</button>
+                        <button onClick={this.handleClick}>Franceza</button>
+                        <button onClick={this.handleClick}>Chimie</button>
+                        <button onClick={this.handleClick}>Geografie</button>
+                        <button onClick={this.handleClick}>Istorie</button>
+                        <button onClick={this.handleClick}>Desen</button>
+                        <button onClick={this.handleClick}>Muzica</button>
                         <button onClick={this.handleClick}>Sport</button>
                         <button onClick={this.handleClick}>TIC</button>
-                        <button onClick={this.handleClick}>Biology</button>
-                        <button onClick={this.handleClick}>Religion</button>
-                        <button onClick={this.handleClick}>Physics</button>
+                        <button onClick={this.handleClick}>Biologie</button>
+                        <button onClick={this.handleClick}>Religie</button>
+                        <button onClick={this.handleClick}>Fizica</button>
                     </div>
                 </div>
                 <button onClick={this.moveRight}>&#62;</button>

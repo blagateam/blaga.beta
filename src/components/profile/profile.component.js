@@ -8,6 +8,7 @@ export class ProfileComponent extends Component {
         super(...args);
 
         this.refs = {};
+        this.handleClick = this.handleClick.bind(this);
     }
 
     componentWillUpdate() {
@@ -36,6 +37,10 @@ export class ProfileComponent extends Component {
         })
     }
 
+    handleClick(e){
+        this.props.showSelected(e.target.innerHTML);
+    }
+
     render() {
         return (
             <div className="profile-component">
@@ -47,11 +52,10 @@ export class ProfileComponent extends Component {
                 </div>
 
                 <div className="links">
-                    <button>Carnet</button>
-                    <button>Prieteni</button>
-                    <button>Grupuri</button>
-                    <button>Clasa mea</button>
-                    <button>Arhiva</button>
+                    <button onClick={this.handleClick}>Timeline</button>
+                    <button onClick={this.handleClick}>Friends</button>
+                    <button onClick={this.handleClick}>Catalog</button>
+                    <button onClick={this.handleClick}>Archive</button>
                 </div>
             </div>
         )
