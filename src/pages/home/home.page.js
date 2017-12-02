@@ -9,68 +9,46 @@ import { ChatSidebar } from '../../components/chat-sidebar/chat-sidebar.componen
 import { FriendsComponent } from '../../components/friends/friends.component';
 import { ArchiveComponent } from '../../components/archive/archive.component';
 import { CatalogComponent } from '../../components/catalog/catalog.component'
+import { FriendContent } from '../../components/friend-content/friend-content.component';
 
 export class HomePage extends Component {
-    constructor(){
+    constructor() {
         super()
-        this.state={
-            timeline:true,
-            archive:false,
-            friends:false,
-            catalog:false
+        this.state = {
+            mainComp: 'Timeline'
         }
 
         this.showSelected = this.showSelected.bind(this);
     }
 
-    showSelected(s){
-        switch(s){
-            case 'Friends':
-                this.setState({
-                    timeline:false,
-                    archive:false,
-                    friends:true,
-                    catalog:false
-                })
-                break;
-            case 'Timeline':
-                this.setState({
-                    timeline:true,
-                    archive:false,
-                    friends:false,
-                    catalog:false
-                })
-                break;    
-            case 'Archive':
-                this.setState({
-                    timeline:false,
-                    archive:true,
-                    friends:false,
-                    catalog:false
-                })
-                break;
-            case 'Catalog':{
-                this.setState({
-                    timeline:false,
-                    archive:false,
-                    friends:false,
-                    catalog:true
-                })
-            }
-            break;
-        }
+    showSelected(s) {
+        this.setState({
+            mainComp: s
+        })
     }
 
     render() {
+        let midComponent = null;
+        switch (this.state.mainComp) {
+            case 'Timeline':
+                midComponent = <TimelineComponent />;
+                break
+            case 'Archive':
+                midComponent = <ArchiveComponent />;
+                break
+            case 'Friends':
+                midComponent = <FriendsComponent />;
+                break
+            case 'Catalog':
+                midComponent = <CatalogComponent />;
+                break
+        }
         return (
             <div className="container home-page">
                 <Header />
                 <div className="content">
-                    <ProfileComponent user={this.props.user} showSelected={this.showSelected}/>
-                    {this.state.timeline ? (<TimelineComponent />): null}
-                    {this.state.archive ? (<ArchiveComponent />): null}
-                    {this.state.friends ? (<FriendsComponent />): null}
-                    {this.state.catalog ? (<CatalogComponent />): null}
+                    <ProfileComponent user={this.props.user} showSelected={this.showSelected} />
+                    {midComponent}
                     <ChatSidebar />
                 </div>
             </div>
